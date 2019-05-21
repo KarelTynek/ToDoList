@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Http\Requests as FormRequest;
 use App;
 use Auth;
 
@@ -12,7 +13,9 @@ class ProjectController extends Controller
         return view('project.create', ['types' => Self::getTypes()]);
     }
 
-    public function store(Request $request) {
+    public function store(FormRequest\CreateProject $request) {
+        $request->validated();
+
         $project = new App\Project;
         $project->title = $request->input('title');
         $project->description = $request->input('desc');
