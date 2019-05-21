@@ -28,5 +28,11 @@
             </div>
         </div>
     </div>
+    <div class="card mt-2">
+        <div class="card-body shadow-sm rounded">
+            <h5 class="card-title text-center">Card title</h5>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+        </div>
+    </div>
 </div>
 @endsection
