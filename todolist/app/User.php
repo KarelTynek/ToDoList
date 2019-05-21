@@ -13,6 +13,8 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoleAndPermission;
 
+    public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *

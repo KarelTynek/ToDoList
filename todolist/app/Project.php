@@ -22,7 +22,7 @@ class Project extends Model
         parent::boot();
 
         self::creating(function($model){
-            $model->id = self::generateUuid();
+            $model->id_project = self::generateUuid();
         });
     }
 

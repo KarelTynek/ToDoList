@@ -24,7 +24,7 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text">Popisek</div>
                 </div>
-                <textarea class="form-control"></textarea>
+                <textarea name="desc" class="form-control"></textarea>
               </div>
             </div>
             <div class="form-group">
@@ -32,7 +32,10 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text">Typ</div>
                 </div>
-                <select class="form-control">
+                <select name="type" class="form-control">
+                  @foreach ($types as $type)
+                      <option value="{{ $type->id_type }}">{{ $type->name }}</option>
+                  @endforeach
                 <select>
               </div>
             </div>
