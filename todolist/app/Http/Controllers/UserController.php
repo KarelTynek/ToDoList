@@ -9,13 +9,12 @@ use App;
 class UserController extends Controller
 {
     public function profile() {
-        dd(Self::getUserProjects());
+        return view('profile', ['projects' => Self::getUserProjects()]);
     }
 
     private function getUserProjects() {
-        return App\Project::select('title', 'created_at', 'updated_at', 'name', 'id_project')
+        return App\Project::select('title','updated_at', 'id_project', 'description')
             ->join('user_projects', 'fk_project', '=', 'id_project')
-            ->join('users', 'id', '=', 'owner')
             ->where('fk_user', Auth::id())
             ->get();
     }

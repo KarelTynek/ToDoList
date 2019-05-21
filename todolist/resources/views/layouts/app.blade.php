@@ -59,7 +59,7 @@
                 </div>
             </div>
         </nav>
-        @yield('content');
+        @yield('content')
 
     <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
