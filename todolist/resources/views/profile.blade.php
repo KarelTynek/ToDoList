@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row mt-2">
-        <button type="button" class="btn btn-primary mt-3 ml-3" data-toggle="button" aria-pressed="false" autocomplete="off">
+        <a href="{{ route('createproject') }}" type="button" class="btn btn-primary ml-3">
             Nový projekt
         </button></a>
     </div>
