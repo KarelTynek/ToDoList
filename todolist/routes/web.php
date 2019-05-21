@@ -17,9 +17,17 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', 'UserController@profile')->name('profile');
 
-    Route::get('/project/create', function() {
-        return view('project.create');
-    })->name('createproject');
+    Route::prefix('project')->group(function () {
+        Route::get('create', function() {
+            return view('project.create');
+        })->name('createproject');
+
+        Route::post('store', [
+            'as' => 'project.store',
+            'uses' => 'ProjectController@store',
+        ])->middleware('level:5');
+    });
+
 });
 
 Auth::routes();

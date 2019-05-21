@@ -9,25 +9,35 @@
           Vytvoření projektu
         </div>
         <div class="card-body">
-            <form method="post" action="">
-              <div class="form-group">
-                  <div class="input-group">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">Název</div>
-                      </div>
-                      <input name="title" type="text" class="form-control" max="32" />
-                    </div>
+          <form method="post" action="{{ route('project.store') }}">
+            @csrf
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Název</div>
+                </div>
+                <input name="title" type="text" class="form-control" max="32" />
               </div>
-              <div class="form-group">
-                  <div class="input-group">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">Popisek</div>
-                      </div>
-                      <textarea class="form-control" ></textarea>
-                    </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Popisek</div>
+                </div>
+                <textarea class="form-control"></textarea>
               </div>
-
-            </form>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Typ</div>
+                </div>
+                <select class="form-control">
+                <select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Vytvořit</button>
+          </form>
         </div>
       </div>
     </div>
