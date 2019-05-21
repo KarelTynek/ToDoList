@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row mt-2">
-        <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+        <a href="{{ route('createproject') }}"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
             Nový projekt
-        </button>
+        </button></a>
     </div>
     <div class="row mt-1">
         <div class="col-md-12">
