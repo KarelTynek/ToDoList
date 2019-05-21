@@ -17,7 +17,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', 'UserController@profile')->name('profile');
 
-    Route::get('/project/create', 'ProjectController@create')->name('createproject');
+    Route::get('/project/create', function() {
+        return view('project.create');
+    })->name('createproject');
 });
 
 Auth::routes();
