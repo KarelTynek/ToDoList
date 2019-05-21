@@ -15,6 +15,7 @@ class UserController extends Controller
     private function getUserProjects() {
         return App\Project::select('title', 'created_at', 'updated_at', 'name', 'id_project')
             ->join('user_projects', 'fk_project', '=', 'id_project')
+            ->join('users', 'id', '=', 'owner')
             ->where('fk_user', Auth::id())
             ->get();
     }
