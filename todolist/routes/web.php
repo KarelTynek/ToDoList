@@ -13,4 +13,9 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
+// Routy pro přihlášené uživatele
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/profile', 'UserController@profile')->name('profile');
+});
+
 Auth::routes();
