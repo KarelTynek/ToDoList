@@ -18,6 +18,7 @@
                     </li>
                     @endforeach
                 </ul>
+                {{ $projects->links() }}
             @else
                 <p>Nemáte žádný projekt.</p>
             @endif
