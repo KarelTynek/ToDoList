@@ -13,7 +13,7 @@ class UserController extends Controller
     }
 
     private function getUserProjects() {
-        return App\Project::select('title','updated_at', 'id_project', 'description')
+        return App\Project::select('title','updated_at', 'id_project', 'description', 'fk_type')
             ->join('user_projects', 'fk_project', '=', 'id_project')
             ->where('fk_user', Auth::id())
             ->paginate(10);

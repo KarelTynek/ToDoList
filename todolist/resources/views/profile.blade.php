@@ -13,7 +13,10 @@
                 <ul class="list-group m-0">
                     @foreach ($projects as $project)
                     <li class="list-group-item">
-                        <span><a href="#">{{ $project->title }}</a> - {{ str_limit($project->description, $limit = 100, $end = '...') }}</span>
+                        <span>
+                            @if ($project->fk_type == 1) <i class="fas fa-lock"></i> @endif
+                            <a href="#">{{ $project->title }}</a> - {{ str_limit($project->description, $limit = 100, $end = '...') }}
+                        </span>
                         <span class="float-right text-muted">{{ date('d.m.Y', strtotime($project->updated_at)) }}</span>
                     </li>
                     @endforeach
