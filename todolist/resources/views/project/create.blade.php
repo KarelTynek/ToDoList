@@ -42,10 +42,9 @@
                   <div class="input-group-text">Typ</div>
                 </div>
                 <select name="type" class="form-control" required>
-                  @foreach ($types as $type)
-                  <option value="{{ $type->id_type }}">{{ $type->name }}</option>
-                  @endforeach
-                  <select>
+                  <option value="1">Soukromý</option> 
+                  <option value="0">Veřejný</option>
+                <select>
               </div>
             </div>
             <button type="submit" class="btn btn-primary">Vytvořit</button>
