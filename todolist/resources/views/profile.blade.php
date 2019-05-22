@@ -8,7 +8,7 @@
                 <div class="form-group">
                     <select name="sort" class="form-control">
                         <option disabled selected>Řadit podle</option>
-                        <option value="name">Název</option>
+                        <option value="title">Název</option>
                         <option value="date">Datum úpravy</option>
                         <option value="type">Typ</option>
                     </select>
