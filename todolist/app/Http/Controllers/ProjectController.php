@@ -34,7 +34,7 @@ class ProjectController extends Controller
     public function show($id) {
        if (!App\Project::find($id)) return redirect()->route('profile');;
 
-       return App\Project::find($id);
+       return view('project.show')
     }
 
     private function getProjectId() {
