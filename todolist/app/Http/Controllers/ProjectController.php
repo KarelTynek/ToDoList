@@ -31,6 +31,12 @@ class ProjectController extends Controller
        return redirect()->route('profile');
     }
 
+    public function show($id) {
+       if (!App\Project::find($id)) return redirect()->route('profile');;
+
+       return App\Project::find($id);
+    }
+
     private function getProjectId() {
         return App\Project::select('id_project')
             ->where('owner', Auth::id())

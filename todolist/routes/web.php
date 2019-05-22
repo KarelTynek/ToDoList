@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::prefix('project')->group(function () {
         Route::get('create', 'ProjectController@create')->name('createproject');
+        Route::get('show/{id}', 'ProjectController@show')->name('showproject');
 
         Route::post('store', [
             'as' => 'project.store',

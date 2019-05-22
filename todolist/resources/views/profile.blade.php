@@ -29,7 +29,7 @@
                 <li class="list-group-item">
                     <span>
                         @if ($project->type == 1) <i class="fas fa-lock"></i> @endif
-                        <a href="#">{{ $project->title }}</a>
+                        <a href="{{ route('showproject', ['id' => $project->id_project]) }}">{{ $project->title }}</a>
                         @if ($project->description != null)
                         - {{ str_limit($project->description, $limit = 100, $end = '...') }}
                         @endif 
