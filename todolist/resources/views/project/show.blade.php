@@ -6,12 +6,19 @@
       <div class="col-md-12">
          <div id="columns" class="row">
             @foreach ($columns as $column)
-               <div class="col-3">
-                     <div class="card border-secondary">
-                           <div class="card-header">{{ $column->name }}</div>
-                           <div class="card-body text-secondary"></div>
-                        </div>   
+            <div class="col-3">
+               <div class="card shadow-sm">
+                  <div class="card-header">{{ $column->name }}
+                     <div class="float-right">
+                        <i class="fas fa-plus mr-1"></i>
+                        <i class="fas fa-pen mr-1"></i>
+                        <i class="fas fa-trash-alt mr-1"></i>
+                     </div>
+
+                  </div>
+                  <div class="card-body text-secondary"></div>
                </div>
+            </div>
             @endforeach
          </div>
       </div>
@@ -45,9 +52,9 @@
 @endsection
 
 @push('scripts')
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-   <script>
-      $('#addcolumn').click(function() {
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+   $('#addcolumn').click(function() {
          $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -66,8 +73,15 @@
                $('#columns').append(
                   `
                   <div class="col-3">
-                     <div class="card border-secondary">
-                        <div class="card-header">${data.column.name}</div>
+                     <div class="card shadow-sm">
+                        <div class="card-header">${data.column.name}
+                           <div class="float-right">
+                              <i class="fas fa-plus mr-1"></i>
+                              <i class="fas fa-pen mr-1"></i>
+                              <i class="fas fa-trash-alt mr-1"></i>
+                           </div>
+                              
+                        </div>
                         <div class="card-body text-secondary"></div>
                      </div>
                   </div>
@@ -79,5 +93,5 @@
          });
          
       });
-   </script>
+</script>
 @endpush
