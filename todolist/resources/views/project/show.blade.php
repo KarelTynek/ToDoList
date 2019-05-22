@@ -4,9 +4,15 @@
 <div class="container-fluid">
    <div class="row">
       <div class="col-md-12">
-         <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#columnmodal">
+         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#columnmodal">
             Přidat sloupec
          </button>
+         <span class="align-middle ml-2 text-muted">
+            {{ $projectData->title }}
+            @if ($projectData->description != null)
+            - {{ str_limit($projectData->description, $limit = 150, $end = '...') }}
+            @endif 
+         </span>
       </div>
    </div>
    <hr />
