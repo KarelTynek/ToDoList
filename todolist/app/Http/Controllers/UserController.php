@@ -3,19 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Auth;
 use App;
 
 class UserController extends Controller
 {
-    public function profile() {
-        return view('profile', ['projects' => Self::getUserProjects()]);
+    public function profile(Request $request) {
+        try {
+            return view('profile', ['projects' => Self::getUserProjects($request)]);
+        } catch (Exception $e) {
+            return back();
+        }
     }
 
-    private function getUserProjects() {
-        return App\Project::select('title','updated_at', 'id_project', 'description', 'type')
+    private function getUserProjects($request) {
+        $query = App\Project::select('title','updated_at', 'id_project', 'description', 'type')
             ->join('user_projects', 'fk_project', '=', 'id_project')
-            ->where('fk_user', Auth::id())
-            ->paginate(10);
+            ->where('fk_user', Auth::id());
+
+        if (!empty($request->get("sort"))) {
+            // Checks if table has requested column, if not redirects user back with warning
+            Schema::table('projects', function (\Illuminate\Database\Schema\Blueprint $table) use ($request, $query) {
+                if (Schema::hasColumn('projects', $request->get("sort"))) {
+                    $query->orderBy($request->get("sort"), 'desc');
+                    if ($request->get("sort") == 'date') $query->orderBy($request->get("updated_at"), 'desc');
+                } else {
+                    return back();
+                }
+            });
+        }
+
+        return $query->paginate(15);
     }
 }

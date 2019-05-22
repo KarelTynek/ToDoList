@@ -4,12 +4,12 @@
 <div class="container">
     <div class="row mt-2">
         <div class="col-3">
-            <form method="GET" action="">
+            <form method="GET" action="{{ route('profile') }}" id="sort">
                 <div class="form-group">
                     <select name="sort" class="form-control">
                         <option disabled selected>Řadit podle</option>
                         <option value="name">Název</option>
-                        <option value="date">Datum</option>
+                        <option value="date">Datum úpravy</option>
                         <option value="type">Typ</option>
                     </select>
                 </div>
@@ -46,3 +46,13 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+       $('select[name=sort]').change(function() {
+            $('#sort').submit();
+            $(this).prop('disabled', 'true');
+       });
+    </script>
+@endpush
