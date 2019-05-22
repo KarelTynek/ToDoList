@@ -16,14 +16,13 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->uuid('id_project')->primary();
             $table->string('title', 32);
-            $table->text('description');
+            $table->text('description')->nullable(true);
             $table->uuid('owner')->index();
-            $table->integer('fk_type')->unsigned()->index();
+            $table->boolean('type');
             $table->timestamps();
         });
 
         Schema::table('projects', function (Blueprint $table) {
-            $table->foreign('fk_type')->references('id_type')->on('types');
             $table->foreign('owner')->references('id')->on('users');
         });
     }
