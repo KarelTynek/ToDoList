@@ -10,7 +10,7 @@ use Auth;
 class ProjectController extends Controller
 {
     public function create() {
-        return view('project.create', ['types' => Self::getTypes()]);
+        return view('project.create');
     }
 
     public function store(FormRequest\CreateProject $request) {
@@ -29,10 +29,6 @@ class ProjectController extends Controller
         $user_project->save();
 
        return redirect()->route('profile');
-    }
-
-    private function getTypes() {
-        return App\Type::all();
     }
 
     private function getProjectId() {
