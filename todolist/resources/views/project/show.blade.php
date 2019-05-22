@@ -57,9 +57,13 @@
                $('#columnmodal').modal('toggle');
 
                $('#columns').append(
-                  `<div>
-                     <h3>${data.column.name}</h3>
-                  </div>`
+                  `
+                  <div class="card border-secondary">
+                     <div class="card-header">${data.column.name}</div>
+                     <div class="card-body text-secondary">
+                     </div>
+                  </div>
+                  `
                );
             },error: function(data) {
                console.log("error");
