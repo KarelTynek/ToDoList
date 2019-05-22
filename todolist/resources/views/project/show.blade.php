@@ -2,27 +2,24 @@
 
 @section('content')
 <div class="container-fluid">
-   <div class="row">
-      <div class="col-md-12">
-         <div id="columns" class="row">
-            @foreach ($columns as $column)
-            <div class="col-3">
-               <div class="card shadow-sm">
-                  <div class="card-header">{{ $column->name }}
-                     <div class="float-right">
-                        <i class="fas fa-plus mr-1"></i>
-                        <i class="fas fa-pen mr-1"></i>
-                        <i class="fas fa-trash-alt mr-1"></i>
-                     </div>
-
-                  </div>
-                  <div class="card-body text-secondary"></div>
+   @foreach ($columns->chunk(4) as $chunk)
+   <div class="row mb-3">
+      @foreach ($chunk as $item)
+      <div class="col-md-3">
+         <div class="card shadow-sm">
+            <div class="card-header">{{ $item->name }}
+               <div class="float-right">
+                  <i class="fas fa-plus mr-1"></i>
+                  <i class="fas fa-pen mr-1"></i>
+                  <i class="fas fa-trash-alt"></i>
                </div>
             </div>
-            @endforeach
+            <div class="card-body text-secondary"></div>
          </div>
       </div>
+      @endforeach
    </div>
+   @endforeach
 </div>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#columnmodal">
    Přidat sloupec
@@ -38,60 +35,17 @@
             </button>
          </div>
          <div class="modal-body">
-            <form>
+            <form method="post" action="{{ route('project.column') }}">
+               @csrf
                <div class="form-group">
                   <label for="name">Název</label>
                   <input name="name" type="text" class="form-control" placeholder="Název">
+                  <input name="project" type="hidden" value="{{ $project }}">
                </div>
-               <button id="addcolumn" type="button" class="btn btn-success w-100">Přidat</button>
+               <button id="addcolumn" type="submit" class="btn btn-success w-100">Přidat</button>
             </form>
          </div>
       </div>
    </div>
 </div>
 @endsection
-
-@push('scripts')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script>
-   $('#addcolumn').click(function() {
-         $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-         });
-
-         $.ajax({
-            type: "POST",
-            url: "{{ route('project.column') }}",
-            data: { 
-               name: $('input[name=name]').val(),
-               project: '{{ $project }}'
-            },success: function(data) {
-               $('#columnmodal').modal('toggle');
-
-               $('#columns').append(
-                  `
-                  <div class="col-3">
-                     <div class="card shadow-sm">
-                        <div class="card-header">${data.column.name}
-                           <div class="float-right">
-                              <i class="fas fa-plus mr-1"></i>
-                              <i class="fas fa-pen mr-1"></i>
-                              <i class="fas fa-trash-alt mr-1"></i>
-                           </div>
-                              
-                        </div>
-                        <div class="card-body text-secondary"></div>
-                     </div>
-                  </div>
-                  `
-               );
-            },error: function(data) {
-               console.log("error");
-            }
-         });
-         
-      });
-</script>
-@endpush

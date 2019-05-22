@@ -43,12 +43,7 @@ class ProjectController extends Controller
         $column->fk_project = $request->input('project');
         $column->save();
 
-        $query = App\Column::select('name')
-            ->where('fk_project', $request->input('project'))
-            ->orderBy('id_column', 'desc')
-            ->first();
-
-        return response()->json(array('column'=> $query), 200);
+        return back();
     }
 
     private function getColumns($id) {
