@@ -26,7 +26,7 @@ class CreateProject extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:32',
+            'title' => 'required|max:32|min:4',
             'type' => 'required'
         ];
     }

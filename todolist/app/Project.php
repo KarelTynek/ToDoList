@@ -11,7 +11,7 @@ class Project extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'title', 'description', 'password', 'fk_type',
+        'title', 'description', 'password', 'type',
     ];
 
     protected $hidden = [

@@ -20,7 +20,7 @@ class ProjectController extends Controller
         $project->title = $request->input('title');
         $project->description = $request->input('desc');
         $project->owner = Auth::id();
-        $project->fk_type = $request->input('type');
+        $project->type = $request->input('type');
         $project->save();
 
         $user_project = new App\user_project;
