@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row mt-2">
+    <div class="row">
         <div class="col-3">
             <form method="GET" action="{{ route('profile') }}" id="sort">
                 <div class="form-group">
