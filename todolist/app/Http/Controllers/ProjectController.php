@@ -34,7 +34,7 @@ class ProjectController extends Controller
     public function show($id) {
        if (!App\Project::find($id)) return redirect()->route('profile');;
 
-       return view('project.show', ['project' => $id]);
+       return view('project.show', ['project' => $id, 'columns' => Self::getColumns($id)]);
     }
 
     public function column(Request $request) {
@@ -51,6 +51,11 @@ class ProjectController extends Controller
         return response()->json(array('column'=> $query), 200);
     }
 
+    private function getColumns($id) {
+        return App\Column::select('name')
+            ->where('fk_project', $id)
+            ->get();
+    }
 
     private function getProjectId() {
         return App\Project::select('id_project')

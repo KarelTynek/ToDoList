@@ -4,8 +4,15 @@
 <div class="container-fluid">
    <div class="row">
       <div class="col-md-12">
-         <div id="columns">
-
+         <div id="columns" class="row">
+            @foreach ($columns as $column)
+               <div class="col-3">
+                     <div class="card border-secondary">
+                           <div class="card-header">{{ $column->name }}</div>
+                           <div class="card-body text-secondary"></div>
+                        </div>   
+               </div>
+            @endforeach
          </div>
       </div>
    </div>
@@ -58,9 +65,10 @@
 
                $('#columns').append(
                   `
-                  <div class="card border-secondary">
-                     <div class="card-header">${data.column.name}</div>
-                     <div class="card-body text-secondary">
+                  <div class="col-3">
+                     <div class="card border-secondary">
+                        <div class="card-header">${data.column.name}</div>
+                        <div class="card-body text-secondary"></div>
                      </div>
                   </div>
                   `
