@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container-fluid">
+   <div class="row">
+      <div class="col-md-12">
+         <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#columnmodal">
+            Přidat sloupec
+         </button>
+      </div>
+   </div>
+   <hr />
    @foreach ($columns->chunk(4) as $chunk)
    <div class="row mb-3">
       @foreach ($chunk as $item)
@@ -21,9 +29,7 @@
    </div>
    @endforeach
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#columnmodal">
-   Přidat sloupec
-</button>
+
 <div class="modal fade" id="columnmodal" tabindex="-1" role="dialog" aria-labelledby="columnmodallabel"
    aria-hidden="true">
    <div class="modal-dialog" role="document">
