@@ -34,8 +34,23 @@ class ProjectController extends Controller
     public function show($id) {
        if (!App\Project::find($id)) return redirect()->route('profile');;
 
-       return view('project.show');
+       return view('project.show', ['project' => $id]);
     }
+
+    public function column(Request $request) {
+        $column = new App\Column;
+        $column->name = $request->input('name');
+        $column->fk_project = $request->input('project');
+        $column->save();
+
+        $query = App\Column::select('name')
+            ->where('fk_project', $request->input('project'))
+            ->orderBy('id_column', 'desc')
+            ->first();
+
+        return response()->json(array('column'=> $query), 200);
+    }
+
 
     private function getProjectId() {
         return App\Project::select('id_project')

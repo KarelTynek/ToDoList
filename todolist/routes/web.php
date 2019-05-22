@@ -25,6 +25,11 @@ Route::group(['middleware' => 'auth'], function () {
             'as' => 'project.store',
             'uses' => 'ProjectController@store',
         ]);
+
+        Route::post('add/column', [
+            'as' => 'project.column',
+            'uses' => 'ProjectController@column'
+        ]);
     });
 
 });
