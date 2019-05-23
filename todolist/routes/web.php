@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::prefix('column')->group(function () {
-        Route::get('delete/{id}', 'ColumnController@destroy')->name('deletecolumn');
+       
     });
 });
 
