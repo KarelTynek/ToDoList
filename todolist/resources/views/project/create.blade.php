@@ -17,6 +17,7 @@
         <div class="card-header">
           Vytvoření projektu
         </div>
+        
         <div class="card-body">
           <form method="post" action="{{ route('project.store') }}">
             @csrf

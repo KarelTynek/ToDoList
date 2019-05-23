@@ -15,7 +15,7 @@ class ProjectController extends Controller
 
     public function store(FormRequest\CreateProject $request) {
         $request->validated();
-
+        
         $project = new App\Project;
         $project->title = $request->input('title');
         $project->description = $request->input('desc');
@@ -27,6 +27,8 @@ class ProjectController extends Controller
         $user_project->fk_user = Auth::id();
         $user_project->fk_project = Self::getProjectId()->id_project;
         $user_project->save();
+
+        flash('Welcome Aboard!');
 
        return redirect()->route('profile');
     }

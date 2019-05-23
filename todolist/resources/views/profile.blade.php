@@ -15,6 +15,7 @@
                 </div>
             </form>
         </div>
+        @include('flash::message')
         <div class="col">
             <a href="{{ route('createproject') }}" type="button" class="btn btn-primary">
                 Nový projekt
