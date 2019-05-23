@@ -66,10 +66,10 @@
             <textarea class="form-control"></textarea>
          </div>
          <div class="row">
-            <div class="col-md-6 m-0">
+            <div class="col-md-6 m-0 mt-2">
                <button type="button" class="btn btn-secondary w-100">Zrušit</button>
             </div>
-            <div class="col-md-6 m-0">
+            <div class="col-md-6 m-0 mt-2">
                <button type="button" class="btn btn-success w-100">Přidat</button>
             </div>   
          </div>
