@@ -8,7 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="mb-3">
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm mb-3">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
