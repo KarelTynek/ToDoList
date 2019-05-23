@@ -60,6 +60,23 @@
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script>
+   function add(column) {
+      $(column).parents('.card').find('.card-body').append(
+         `<div class="form-group">
+            <textarea class="form-control"></textarea>
+         </div>
+         <div class="row">
+            <div class="col-md-6 m-0">
+               <button type="button" class="btn btn-secondary w-100">Zrušit</button>
+            </div>
+            <div class="col-md-6 m-0">
+               <button type="button" class="btn btn-success w-100">Přidat</button>
+            </div>   
+         </div>
+         `
+      )
+   }
+
    $('#addcolumn').click(function() {
          $.ajaxSetup({
             headers: {
