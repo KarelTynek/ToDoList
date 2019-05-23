@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    @include('flash::message')
     <div class="row">
         <div class="col-3">
             <form method="GET" action="{{ route('profile') }}" id="sort">
@@ -15,7 +16,6 @@
                 </div>
             </form>
         </div>
-        @include('flash::message')
         <div class="col">
             <a href="{{ route('createproject') }}" type="button" class="btn btn-primary">
                 Nový projekt
