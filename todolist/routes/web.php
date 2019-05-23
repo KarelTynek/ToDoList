@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::prefix('column')->group(function () {
-       
+       Route::get('reload', 'ColumnController@reload')->name('reload');
     });
 });
 

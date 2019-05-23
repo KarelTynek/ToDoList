@@ -16,24 +16,9 @@
       </div>
    </div>
    <hr />
-   @foreach ($columns->chunk(4) as $chunk)
-   <div class="row">
-      @foreach ($chunk as $item)
-      <div class="col-md-3 mb-3">
-         <div class="card shadow-sm">
-            <div class="card-header">{{ $item->name }}
-               <div class="float-right">
-                  <i class="fas fa-plus mr-1"></i>
-                  <i class="fas fa-pen mr-1"></i>
-                  <i class="fas fa-trash-alt"></i>
-               </div>
-            </div>
-            <div class="card-body text-secondary"></div>
-         </div>
-      </div>
-      @endforeach
+   <div id="columnscontainer">
+      @include('project.columns')
    </div>
-   @endforeach
 </div>
 
 <div class="modal fade" id="columnmodal" tabindex="-1" role="dialog" aria-labelledby="columnmodallabel"
@@ -47,17 +32,36 @@
             </button>
          </div>
          <div class="modal-body">
-            <form method="post" action="{{ route('project.column') }}">
+            <form id="columnform" method="post" action="{{ route('project.column') }}">
                @csrf
                <div class="form-group">
                   <label for="name">Název</label>
                   <input name="name" type="text" class="form-control" placeholder="Název">
                   <input name="project" type="hidden" value="{{ $project }}">
                </div>
-               <button id="addcolumn" type="submit" class="btn btn-success w-100">Přidat</button>
+               <button id="addcolumn" type="button" class="btn btn-success w-100">Přidat</button>
             </form>
          </div>
       </div>
    </div>
 </div>
 @endsection
+
+
+@push('scripts')
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+   <script>
+      $('#addcolumn').click(function() {
+         $.ajax({
+            url: '{{ route('reload') }}',
+            data: {
+               id: '{{ $project }}'
+            }
+         }).done(function(data) {
+            $('#columnscontainer').html(data.view);
+         }).fail(function(request, status, error) {
+            console.log(request.responseText);
+         });
+      });
+   </script>
+@endpush
