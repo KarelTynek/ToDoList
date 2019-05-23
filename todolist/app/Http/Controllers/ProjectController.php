@@ -38,7 +38,7 @@ class ProjectController extends Controller
 
        return view('project.show', [
            'project' => $id, 
-           'columns' => Self::getColumns($id),
+           'columns' => App\Column::getColumns($id),
            'projectData' => Self::getProjectData($id)
        ]);
     }
@@ -48,20 +48,12 @@ class ProjectController extends Controller
         $column->name = $request->input('name');
         $column->fk_project = $request->input('project');
         $column->save();
-
-        return back();
     }
 
     private function getProjectData($id) {
         return App\Project::select('title', 'description')
             ->where('id_project', $id)
             ->first();
-    }
-
-    private function getColumns($id) {
-        return App\Column::select('name', 'id_column')
-            ->where('fk_project', $id)
-            ->get();
     }
 
     private function getProjectId() {

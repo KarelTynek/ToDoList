@@ -16,14 +16,9 @@ class ColumnController extends Controller
     }
 
     public function reload(Request $request) {
-        $view = view('project.columns', ['columns' => Self::getColumns($request->input('id'))])->render();
+        $view = view('project.columns', ['columns' => App\Column::getColumns($request->input('id'))])->render();
 
         return response()->json(compact('view'));
     }
 
-    private function getColumns($id) {
-        return App\Column::select('name', 'id_column')
-            ->where('fk_project', $id)
-            ->get();
-    }
 }

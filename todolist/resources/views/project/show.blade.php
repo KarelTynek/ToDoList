@@ -52,6 +52,28 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
    <script>
       $('#addcolumn').click(function() {
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+         });
+         
+         $.ajax({
+            type: "POST",
+            url: "{{ route('project.column') }}",
+            data: { 
+               name: $('input[name=name]').val(),
+               project: '{{ $project }}'
+            },success: function(data) {
+               $('#columnmodal').modal('toggle');
+               reload()
+            },error: function(request, status, error) {
+               console.log(request.responseText);
+            }
+         });
+      });
+
+      function reload() {
          $.ajax({
             url: '{{ route('reload') }}',
             data: {
@@ -62,6 +84,6 @@
          }).fail(function(request, status, error) {
             console.log(request.responseText);
          });
-      });
+      }
    </script>
 @endpush
