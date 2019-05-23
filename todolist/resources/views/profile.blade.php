@@ -25,68 +25,68 @@
     <div class="row">
         <div class="col-md-12">
             @if(count($projects) > 0)
-
-            <div class="accordion" id="accordionExample">
-                <div class="card shadow-sm">
-                    <div class="card-header" id="headingPublic">
+            <div class="accordion" id="accordion">
+                <div class="card">
+                    <div class="card-header" id="private">
                         <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#public"
-                                aria-expanded="true" aria-controls="public">
-                                Veřejné projekty
-                            </button>
-                        </h2>
-                    </div>
-
-                    <div id="public" class="collapse show" aria-labelledby="headingPublic"
-                        data-parent="#accordionExample">
-                        <div class="card-body p-0 border-bottom-0 rounded">
-                            <ul class="list-group m-0">
-                                <li class="list-group-item border-left-0 border-right-0 rounded-0">Test</li>
-                                <li class="list-group-item border-left-0 border-right-0 rounded-0">Test</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="card shadow-sm">
-                    <div class="card-header" id="headingPrivate">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#private"
-                                aria-expanded="true" aria-controls="private">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                data-target="#collapseprivate" aria-expanded="false" aria-controls="collapseprivate">
                                 Soukromé projekty
                             </button>
                         </h2>
                     </div>
-
-                    <div id="private" class="collapse show" aria-labelledby="headingPrivate"
-                        data-parent="#accordionExample">
-                        <div class="card-body p-0 border-bottom-0 rounded">
+                    <div id="collapseprivate" class="collapse" aria-labelledby="private" data-parent="#accordion">
+                        <div class="card-body">
                             <ul class="list-group m-0">
-                                    <li class="list-group-item border-left-0 border-right-0 rounded-0">Test</li>
-                                    <li class="list-group-item border-left-0 border-right-0 rounded-0">Test</li>
+                                @foreach ($projects as $project)
+                                @if ($project->type == 1)
+                                <li class="list-group-item">
+                                    <span>
+                                        <a
+                                            href="{{ route('showproject', ['id' => $project->id_project]) }}">{{ $project->title }}</a>
+                                        @if ($project->description != null)
+                                        - {{ str_limit($project->description, $limit = 100, $end = '...') }}
+                                        @endif
+                                    </span>
+                                    <span
+                                        class="float-right text-muted">{{ date('d.m.Y', strtotime($project->updated_at)) }}</span>
+                                </li>
+                                @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-header" id="public">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                data-target="#collapsepublic" aria-expanded="false" aria-controls="collapsepublic">
+                                Veřejné projekty
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapsepublic" class="collapse" aria-labelledby="public" data-parent="#accordion">
+                        <div class="card-body">
+                            @foreach ($projects as $project)
+                            @if ($project->type == 0)
+                            <li class="list-group-item">
+                                <span>
+                                    <a
+                                        href="{{ route('showproject', ['id' => $project->id_project]) }}">{{ $project->title }}</a>
+                                    @if ($project->description != null)
+                                    - {{ str_limit($project->description, $limit = 100, $end = '...') }}
+                                    @endif
+                                </span>
+                                <span
+                                    class="float-right text-muted">{{ date('d.m.Y', strtotime($project->updated_at)) }}</span>
+                            </li>
+                            @endif
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-            <ul class="list-group m-0">
-                @foreach ($projects as $project)
-
-
-
-                <li class="list-group-item">
-                    <span>
-                        @if ($project->type == 1) <i class="fas fa-lock"></i> @endif
-                        <a href="{{ route('showproject', ['id' => $project->id_project]) }}">{{ $project->title }}</a>
-                        @if ($project->description != null)
-                        - {{ str_limit($project->description, $limit = 100, $end = '...') }}
-                        @endif
-                    </span>
-                    <span class="float-right text-muted">{{ date('d.m.Y', strtotime($project->updated_at)) }}</span>
-                </li>
-                @endforeach
-            </ul>
             {{ $projects->links() }}
             @else
             <p>Nemáte žádný projekt.</p>
