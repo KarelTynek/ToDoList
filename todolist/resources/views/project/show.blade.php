@@ -85,9 +85,9 @@
                   $('#errors').append(err.errors.name);
                } 
 
-               if (err.errors.project != 'undefined'){ 
+               if (err.errors.project != 'undefined') 
                   $('#errors').append(err.errors.project);
-               } 
+               
             }
          });
       });
