@@ -26,14 +26,16 @@ Route::group(['middleware' => 'auth'], function () {
             'uses' => 'ProjectController@store',
         ]);
 
-        Route::post('add/column', [
-            'as' => 'project.column',
-            'uses' => 'ProjectController@column'
-        ]);
     });
 
     Route::prefix('column')->group(function () {
        Route::get('reload', 'ColumnController@reload')->name('reload');
+
+       Route::post('add', [
+        'as' => 'column.add',
+        'uses' => 'ColumnController@add'
+        ]);
+
     });
 });
 

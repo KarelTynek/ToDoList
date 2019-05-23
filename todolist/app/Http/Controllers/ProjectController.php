@@ -43,13 +43,6 @@ class ProjectController extends Controller
        ]);
     }
 
-    public function column(Request $request) {
-        $column = new App\Column;
-        $column->name = $request->input('name');
-        $column->fk_project = $request->input('project');
-        $column->save();
-    }
-
     private function getProjectData($id) {
         return App\Project::select('title', 'description')
             ->where('id_project', $id)

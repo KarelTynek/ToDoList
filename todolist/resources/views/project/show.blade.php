@@ -4,6 +4,17 @@
 <div class="container-fluid">
    <div class="row">
       <div class="col-md-12">
+         @if ($errors->any())
+         <div class="alert alert-warning">
+            @foreach ($errors->all() as $error)
+            {{$error}}<br />
+            @endforeach
+         </div>
+         @endif
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-12">
          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#columnmodal">
             Přidat sloupec
          </button>
@@ -32,15 +43,13 @@
             </button>
          </div>
          <div class="modal-body">
-            <form id="columnform" method="post" action="{{ route('project.column') }}">
-               @csrf
-               <div class="form-group">
-                  <label for="name">Název</label>
-                  <input name="name" type="text" class="form-control" placeholder="Název">
-                  <input name="project" type="hidden" value="{{ $project }}">
-               </div>
-               <button id="addcolumn" type="button" class="btn btn-success w-100">Přidat</button>
-            </form>
+            <span id="errors"></span>
+            <div class="form-group">
+               <label for="name">Název</label>
+               <input name="name" type="text" class="form-control" placeholder="Název">
+               <input name="project" type="hidden" value="{{ $project }}">
+            </div>
+            <button id="addcolumn" type="button" class="btn btn-success w-100">Přidat</button>
          </div>
       </div>
    </div>
@@ -49,18 +58,18 @@
 
 
 @push('scripts')
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-   <script>
-      $('#addcolumn').click(function() {
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+   $('#addcolumn').click(function() {
          $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
          });
-         
+
          $.ajax({
             type: "POST",
-            url: "{{ route('project.column') }}",
+            url: "{{ route('column.add') }}",
             data: { 
                name: $('input[name=name]').val(),
                project: '{{ $project }}'
@@ -68,7 +77,10 @@
                $('#columnmodal').modal('toggle');
                reload()
             },error: function(request, status, error) {
-               console.log(request.responseText);
+               var err = JSON.parse(request.responseText);
+               
+               if (err.errors.name != 'undefined') $('#errors').append(err.errors.name);
+               if (err.errors.project != 'undefined') $('#errors').append(err.errors.project);
             }
          });
       });
@@ -85,5 +97,5 @@
             console.log(request.responseText);
          });
       }
-   </script>
+</script>
 @endpush
