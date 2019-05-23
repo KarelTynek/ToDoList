@@ -25,11 +25,6 @@
                <div class="float-right">
                   <i class="fas fa-plus mr-1"></i>
                   <i class="fas fa-pen mr-1"></i>
-                  <form method="POST" action="{{ route('column.delete') }}" id="delete">
-                     @csrf
-                     @method('DELETE')
-                     <input name="id" type="hidden" value="{{ $item->id_column }}" />
-                  </form>
                   <a href="#" data-toggle="modal" data-target="#deletemodal"><i class="fas fa-trash-alt"></i></a>
                </div>
             </div>
@@ -57,7 +52,9 @@
          </div>
          <div class="modal-footer">
             <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
-            <button id="deletebtn" type="button" class="btn btn-danger">Smazat</button>
+            <a href="{{ route('deletecolumn', ['id' => $item->id_column ]) }}">
+               <button id="deletebtn" type="button" class="btn btn-danger">Smazat</button>
+            </a>
          </div>
       </div>
    </div>
@@ -89,12 +86,11 @@
 @endsection
 
 @push('scripts')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script>
-       $('#deletebtn').click(function() {
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+   $('#deletebtn').click(function() {
          $(this).prop('disabled', 'true');
          $('#cancel').prop('disabled', 'true');
-         $('#delete').submit();
-       });
-    </script>
+   });
+</script>
 @endpush
