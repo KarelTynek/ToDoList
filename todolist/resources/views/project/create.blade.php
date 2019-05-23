@@ -18,7 +18,7 @@
           Vytvoření projektu
         </div>
         <div class="card-body">
-          <form method="post" class="col-12" action="{{ route('project.store') }}">
+          <form method="post" action="{{ route('project.store') }}">
             @csrf
             <div class="form-group">
               <div class="input-group">
