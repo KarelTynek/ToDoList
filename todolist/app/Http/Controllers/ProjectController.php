@@ -57,7 +57,7 @@ class ProjectController extends Controller
     }
 
     private function getColumns($id) {
-        return App\Column::select('name')
+        return App\Column::select('name', 'id_column')
             ->where('fk_project', $id)
             ->get();
     }
