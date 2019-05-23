@@ -75,12 +75,19 @@
                project: '{{ $project }}'
             },success: function(data) {
                $('#columnmodal').modal('toggle');
+               $('#errors').html('');
                reload()
             },error: function(request, status, error) {
                var err = JSON.parse(request.responseText);
                
-               if (err.errors.name != 'undefined') $('#errors').append(err.errors.name);
-               if (err.errors.project != 'undefined') $('#errors').append(err.errors.project);
+               if (err.errors.name != 'undefined'){
+                  $('#errors').html(''); 
+                  $('#errors').append(err.errors.name);
+               } 
+
+               if (err.errors.project != 'undefined'){ 
+                  $('#errors').append(err.errors.project);
+               } 
             }
          });
       });
