@@ -4,10 +4,10 @@
    <div class="col-md-3 mb-3">
       <div class="card shadow-sm column">
          <div class="card-header">
-            {{ $item->name }}
+            <span class="cardname">{{ $item->name }}</span>
             <div class="float-right">
                <a onclick="addForm(this)" href="#"><i class="fas fa-plus mr-1"></i></a>
-               <i class="fas fa-pen mr-1"></i>
+               <a onclick="edit(this)"><i class="fas fa-pen mr-1"></i></a>
                <i class="fas fa-trash-alt"></i>
             </div>
          </div>

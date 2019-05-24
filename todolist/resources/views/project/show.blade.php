@@ -109,6 +109,13 @@
       });  
    }
 
+   function edit(column) {
+      var target = $(column).parents('.card').find('.cardname');
+      var name = $(column).parents('.card').find('.cardname').html();
+      
+      target.html(`<input type="text" value="${name}" class="form-control" />`)
+   }
+
    $('#addcolumn').click(function() {
          $.ajaxSetup({
             headers: {
