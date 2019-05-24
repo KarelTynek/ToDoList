@@ -11,7 +11,6 @@
                         <option disabled selected>Řadit podle</option>
                         <option value="title">Název</option>
                         <option value="date">Datum úpravy</option>
-                        <option value="type">Typ</option>
                     </select>
                 </div>
             </form>
