@@ -13,7 +13,7 @@
       @endif
     </div>
     <div class="col-md-12">
-      <div class="card">
+      <div class="card shadow-sm">
         <div class="card-header">
           Vytvoření projektu
         </div>
