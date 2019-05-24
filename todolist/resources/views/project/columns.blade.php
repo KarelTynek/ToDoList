@@ -7,11 +7,11 @@
             <span class="cardname">{{ $item->name }}</span>
             <div class="float-right">
                <a onclick="addForm(this)" href="#"><i class="fas fa-plus mr-1"></i></a>
-               <a onclick="edit(this)"><i class="fas fa-pen mr-1"></i></a>
+               <a onclick="edit(this)" href="#"><i class="fas fa-pen mr-1"></i></a>
                <i class="fas fa-trash-alt"></i>
             </div>
          </div>
-         <div class="card-body column-text">
+         <div class="card-body column-text scrollbar-card">
             <input type="hidden" name="id" value="{{ $item->id_column }}" />
             @foreach ($rows as $row)
                @if ($row->fk_column == $item->id_column)
