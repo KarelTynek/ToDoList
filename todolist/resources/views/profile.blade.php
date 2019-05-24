@@ -30,7 +30,7 @@
                         <h2 class="mb-0">
                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                 data-target="#collapseprivate" aria-expanded="false" aria-controls="collapseprivate">
-                                Soukromé projekty
+                                <span class="badge badge-pill badge-secondary">{{ $private->count }}</span> Soukromé projekty
                             </button>
                         </h2>
                     </div>
@@ -61,7 +61,7 @@
                         <h2 class="mb-0">
                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                 data-target="#collapsepublic" aria-expanded="false" aria-controls="collapsepublic">
-                                Veřejné projekty
+                                <span class="badge badge-pill badge-secondary">{{ $public->count }}</span> Veřejné projekty
                             </button>
                         </h2>
                     </div>
