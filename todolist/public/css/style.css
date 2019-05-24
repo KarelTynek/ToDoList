@@ -1,1 +1,3 @@
 textarea {resize: none;}
+.column {height: 500px;}
+.column-text {overflow-y: auto;}
