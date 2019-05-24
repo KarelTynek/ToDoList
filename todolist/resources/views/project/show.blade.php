@@ -60,21 +60,53 @@
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script>
-   function add(column) {
-      $(column).parents('.card').find('.card-body').append(
-         `<div class="form-group">
-            <textarea class="form-control"></textarea>
-         </div>
-         <div class="row">
-            <div class="col-md-6 m-0 mt-2">
-               <button type="button" class="btn btn-secondary w-100">Zrušit</button>
+   function addForm(column) {
+      var parent = $(column).parents('.card').find('.card-body');
+
+      if ($(parent).children(".item").length <= 0) {
+         parent.append(
+         `
+         <div class="item">
+            <div class="form-group">
+               <textarea name="desc" class="form-control"></textarea>
             </div>
-            <div class="col-md-6 m-0 mt-2">
-               <button type="button" class="btn btn-success w-100">Přidat</button>
-            </div>   
+            <div class="row">
+               <div class="col-md-6 mt-2">
+                  <button type="button" class="btn btn-secondary w-100">Zrušit</button>
+               </div>
+               <div class="col-md-6 mt-2">
+                  <button onclick="addRow(this)" type="button" class="btn btn-success w-100">Přidat</button>
+               </div>   
+            </div>
          </div>
          `
       )
+      }
+
+   }
+
+   function addRow(column) {
+      var id = $(column).parents('.card-body').find('input[name=id]').val();
+      var text = $(column).parents('.card-body').find('textarea[name=desc]').val();
+
+      $.ajaxSetup({
+         headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+      });
+
+       $.ajax({
+         type: "POST",
+         url: "{{ route('row.add') }}",
+         data: { 
+            desc: text,
+            id: id
+         },success: function(data) {
+            reload()
+         },error: function(request, status, error) {
+            console.log(request.responseText);
+         }
+      });  
    }
 
    $('#addcolumn').click(function() {
