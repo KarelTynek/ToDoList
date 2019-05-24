@@ -1,8 +1,8 @@
 @foreach ($columns->chunk(4) as $chunk)
 <div class="row">
    @foreach ($chunk as $item)
-   <div class="col-md-3 mb-3">
-      <div class="card shadow-sm">
+   <div class="col-md-3 mb-3 d-flex">
+      <div class="card shadow-sm w-100">
          <div class="card-header">
             {{ $item->name }}
             <div class="float-right">
