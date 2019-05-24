@@ -11,7 +11,7 @@
                <i class="fas fa-trash-alt"></i>
             </div>
          </div>
-         <div class="card-body column-text">
+         <div class="main card-body column-text">
             <input type="hidden" name="id" value="{{ $item->id_column }}" />
             @foreach ($rows as $row)
                @if ($row->fk_column == $item->id_column)
