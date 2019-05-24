@@ -27,7 +27,10 @@ class ColumnController extends Controller
 
 
     public function reload(Request $request) {
-        $view = view('project.columns', ['columns' => App\Column::getColumns($request->input('id'))])->render();
+        $view = view('project.columns', [
+            'columns' => App\Column::getColumns($request->input('id')),
+            'rows' => App\Row::getRows($request->input('id'))
+            ])->render();
 
         return response()->json(compact('view'));
     }

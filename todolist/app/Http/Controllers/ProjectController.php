@@ -39,7 +39,8 @@ class ProjectController extends Controller
        return view('project.show', [
            'project' => $id, 
            'columns' => App\Column::getColumns($id),
-           'projectData' => Self::getProjectData($id)
+           'projectData' => Self::getProjectData($id),
+           'rows' => App\Row::getRows($id)
        ]);
     }
 

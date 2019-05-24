@@ -32,11 +32,20 @@ Route::group(['middleware' => 'auth'], function () {
        Route::get('reload', 'ColumnController@reload')->name('reload');
 
        Route::post('add', [
-        'as' => 'column.add',
-        'uses' => 'ColumnController@add'
-        ]);
+            'as' => 'column.add',
+            'uses' => 'ColumnController@add'
+       ]);
 
     });
+
+    Route::prefix('row')->group(function () {
+
+        Route::post('add', [
+            'as' => 'row.add',
+            'uses' => 'RowController@add'
+        ]);
+ 
+     });
 });
 
 Auth::routes();

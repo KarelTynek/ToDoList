@@ -15,4 +15,12 @@ class Row extends Model
     protected $hidden = [
         'id_row', 'fk_column',
     ];
+
+    public static function getRows($id) {
+        return Self::select('rows.description', 'fk_column')
+            ->join('columns', 'id_column', '=', 'fk_column')
+            ->join('projects', 'id_project', '=', 'fk_project')
+            ->where('id_project', $id)
+            ->get();
+    }
 }
