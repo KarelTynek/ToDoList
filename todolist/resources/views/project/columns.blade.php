@@ -15,7 +15,11 @@
             <input type="hidden" name="id" value="{{ $item->id_column }}" />
             @foreach ($rows as $row)
                @if ($row->fk_column == $item->id_column)
-                  {{ $row->description }}
+               <div class="card mb-2 bg-light">
+                  <div class="card-body">
+                     {{ $row->description }}
+                  </div>
+               </div>
                @endif
             @endforeach
          </div>
