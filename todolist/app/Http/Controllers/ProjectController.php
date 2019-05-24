@@ -28,7 +28,7 @@ class ProjectController extends Controller
         $user_project->fk_project = Self::getProjectId()->id_project;
         $user_project->save();
 
-        flash('Projekt byl vytvořen.');
+        flash('Welcome Aboard!');
 
        return redirect()->route('profile');
     }
