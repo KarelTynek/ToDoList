@@ -6,9 +6,9 @@
          <div class="card-header">
             <div class="row">
                <div class="col-9">
-                  <span class="cardname">{{ $item->name }}</span>
+                     <span class="cardname">{{ $item->name }}</span>
                </div>
-
+               
                <div class="float-right">
                   <a onclick="addForm(this)" href="#"><i class="fas fa-plus mr-1"></i></a>
                   <a onclick="edit(this)" href="#"><i class="fas fa-pen mr-1"></i></a>
