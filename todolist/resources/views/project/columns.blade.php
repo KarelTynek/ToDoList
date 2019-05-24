@@ -2,11 +2,7 @@
 <div class="row">
    @foreach ($chunk as $item)
    <div class="col-md-3 mb-3">
-<<<<<<< HEAD
-      <div class="card shadow-sm">
-=======
       <div class="card shadow-sm column">
->>>>>>> 6bdf6c6e0701c973fd86b3c5de718565b887ea53
          <div class="card-header">
             {{ $item->name }}
             <div class="float-right">
