@@ -11,7 +11,11 @@ class UserController extends Controller
 {
     public function profile(Request $request) {
         try {
-            return view('profile', ['projects' => Self::getUserProjects($request)]);
+            return view('profile', [
+                'projects' => Self::getUserProjects($request),
+                'private' => Self::getPrivateAmount(),
+                'public' => Self::getPublicAmount()
+            ]);
         } catch (Exception $e) {
             return back();
         }
@@ -35,5 +39,13 @@ class UserController extends Controller
         }
 
         return $query->paginate(15);
+    }
+
+    private function getPrivateAmount() {
+        return App\Project::selectRaw('COUNT(type) as count')->where('type', 1)->first();
+    }
+
+    private function getPublicAmount() {
+        return App\Project::selectRaw('COUNT(type) as count')->where('type', 0)->first();
     }
 }
