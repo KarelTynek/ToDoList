@@ -112,8 +112,33 @@
    function edit(column) {
       var target = $(column).parents('.card').find('.cardname');
       var name = $(column).parents('.card').find('.cardname').html();
-      
-      target.html(`<input type="text" value="${name}" class="form-control" />`)
+
+      target.html(`<input type="text" value="${name}" class="form-control" />`);
+
+      $(target).focusout(function() {
+         target.html(name);
+
+         $.ajaxSetup({
+            headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+         });
+
+         $.ajax({
+            type: "POST",
+            url: "{{ route('column.add') }}",
+            data: { 
+               name: $('input[name=name]').val(),
+               project: '{{ $project }}'
+            },success: function(data) {
+               $('#columnmodal').modal('toggle');
+               $('#errors').html('');
+               reload()
+            },error: function(request, status, error) {
+               var err = JSON.parse(request.responseText);
+            }
+         });
+      });
    }
 
    $('#addcolumn').click(function() {

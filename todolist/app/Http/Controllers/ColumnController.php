@@ -25,7 +25,6 @@ class ColumnController extends Controller
         $column->save();
     }
 
-
     public function reload(Request $request) {
         $view = view('project.columns', [
             'columns' => App\Column::getColumns($request->input('id')),
@@ -33,6 +32,12 @@ class ColumnController extends Controller
             ])->render();
 
         return response()->json(compact('view'));
+    }
+
+    public function rename(Request $request) {
+        App\Column::where('id_column', $request->input('id'))->update([
+            'title' => $request->input('title')
+        ]);
     }
 
 }
