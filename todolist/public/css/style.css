@@ -9,10 +9,9 @@ textarea {resize: none;}
 .scrollbar-card::-webkit-scrollbar-thumb {
     border-radius: 0;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-    background-color: #f8f9fa; }
+    background-color: #f0f0f0; }
 
 .scrollbar-card {
-    overflow-y: scroll;
-    scrollbar-color: #f8f9fa #FFF;
-    scrollbar-width: 4px;
+    scrollbar-color: #f0f0f0 #FFF;
+    scrollbar-width: thin;
     }
