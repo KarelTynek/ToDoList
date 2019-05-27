@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
             'uses' => 'ColumnController@add'
        ]);
 
-       Route::post('rename'. [
+       Route::post('rename', [
             'as' => 'column.rename',
             'uses' => 'ColumnController@rename'
        ]);
