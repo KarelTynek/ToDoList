@@ -67,7 +67,7 @@
          parent.prepend(
          `
          <div class="item">
-            <div class="item border shadow-sm mb-2 p-2">
+            <div class="item border rounded shadow-sm mb-2 p-2">
                <div class="form-group">
                   <textarea name="desc" class="form-control" placeholder="Text poznámky"></textarea>
                </div>
