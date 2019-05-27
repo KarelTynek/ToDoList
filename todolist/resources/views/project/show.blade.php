@@ -66,7 +66,7 @@
       if ($(parent).children(".item").length <= 0) {
          parent.prepend(
          `
-         <div class="item border mb-2 p-2">
+         <div class="item border shadow-sm mb-2 p-2">
             <div class="form-group">
                <textarea name="desc" class="form-control" placeholder="Text poznámky"></textarea>
             </div>
@@ -113,6 +113,8 @@
       var id = $(column).parents('.card').find('input[name=id]').val();
       var target = $(column).parents('.card').find('.cardname');
       var name = $(column).parents('.card').find('.cardname').html();
+
+      if ($(target).find('input').length) return;
 
       target.html(`<input id="${id}" type="text" value="${name}" class="form-control" />`);
 
