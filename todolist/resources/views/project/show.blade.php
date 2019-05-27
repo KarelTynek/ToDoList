@@ -177,6 +177,36 @@ function del(column) {
       });
 }
 
+
+
+function editRow(row){
+
+}
+
+function delRow(row) {
+   var id = $(row).find('input[name=id]').val();
+
+   $.ajaxSetup({
+         headers: {
+             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+      });
+
+      $.ajax({
+         type: "POST",
+         url: "{{ route('row.delete') }}",
+         data: { 
+            id: id,
+            _method: 'DELETE',
+         },success: function(data) {
+            reload()
+         },error: function(request, status, error) {
+            var err = JSON.parse(request.responseText);
+            console.log(err);
+         }
+      });
+}
+
 $('#addcolumn').click(function() {
       $.ajaxSetup({
          headers: {

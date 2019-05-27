@@ -53,6 +53,16 @@ Route::group(['middleware' => 'auth'], function () {
             'as' => 'row.add',
             'uses' => 'RowController@add'
         ]);
+
+        Route::post('edit', [
+            'as' => 'row.edit',
+            'uses' => 'RowController@edit'
+        ]);
+
+        Route::delete('delete', [
+            'as' => 'row.delete',
+            'uses' => 'RowController@destroy'
+       ]);
  
      });
 });
