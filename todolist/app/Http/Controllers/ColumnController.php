@@ -36,8 +36,10 @@ class ColumnController extends Controller
 
     public function rename(Request $request) {
         App\Column::where('id_column', $request->input('id'))->update([
-            'title' => $request->input('title')
+            'name' => $request->input('title')
         ]);
+
+        return response()->json("Renamed");
     }
 
 }
