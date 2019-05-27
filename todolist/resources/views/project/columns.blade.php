@@ -12,12 +12,10 @@
                   <div class="float-right">
                      <a onclick="addForm(this)" href="#"><i class="fas fa-plus mr-1"></i></a>
                      <a onclick="edit(this)" href="#"><i class="fas fa-pen mr-1"></i></a>
-                     <i class="fas fa-trash-alt"></i>
+                     <a onclick="del(this)" href="#"><i class="fas fa-trash-alt"></i></a>
                   </div>
                </div>
-
             </div>
-
          </div>
          <div class="main card-body column-text scrollbar-card">
             <input type="hidden" name="id" value="{{ $item->id_column }}" />

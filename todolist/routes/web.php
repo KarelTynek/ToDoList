@@ -40,6 +40,11 @@ Route::group(['middleware' => 'auth'], function () {
             'as' => 'column.rename',
             'uses' => 'ColumnController@rename'
        ]);
+
+       Route::delete('delete', [
+            'as' => 'column.delete',
+            'uses' => 'ColumnController@destroy'
+       ]);
     });
 
     Route::prefix('row')->group(function () {

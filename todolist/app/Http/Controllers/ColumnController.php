@@ -8,10 +8,13 @@ use App;
 
 class ColumnController extends Controller
 {
-    public function destroy($id) {
-        $column = App\Column::find($id);
+    public function destroy(Request $request) {
+        $column = App\Column::find($request->input('id'));
         
-        if ($column) $column->delete();
+        if ($column) {
+            App\Row::where('fk_column', $column->id_column)->delete();
+            $column->delete();
+        }
 
         return back();
     }
