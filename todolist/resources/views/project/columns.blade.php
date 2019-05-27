@@ -21,7 +21,7 @@
             <input type="hidden" name="id" value="{{ $item->id_column }}" />
             @foreach ($rows as $row)
             @if ($row->fk_column == $item->id_column)
-            <div class="card mb-2 bg-light" id="test">
+            <div class="card mb-2 bg-light draggable">
                <div class="card-header">
                   <div class="float-right">
                      <a onclick="editRow(this)" href="#" class="text-secondary"><i class="fas fa-edit mr-1"></i></a>
@@ -32,8 +32,7 @@
                <div class="card-body">
                   <span class="rowDesc">
                         {{ $row->description }}
-                  </span>
-                  
+                  </span>          
                </div>
             </div>
             @endif
