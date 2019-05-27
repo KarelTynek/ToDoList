@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-3">
     @include('flash::message')
     <div class="row">
         <div class="col-3">
