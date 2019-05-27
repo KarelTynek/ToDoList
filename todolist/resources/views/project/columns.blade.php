@@ -24,11 +24,13 @@
             <div class="card mb-2 bg-light">
                <div class="card-header">
                   <div class="float-right">
-                     <a onclick="edit(this)" href="#" class="text-secondary"><i class="fas fa-edit mr-1"></i></a>
-                     <a onclick="del(this)" href="#" class="text-secondary"><i class="fas fa-trash-alt"></i></a>
+                     <a onclick="editRow(this)" href="#" class="text-secondary"><i class="fas fa-edit mr-1"></i></a>
+                     <a onclick="delRow(this)" href="#" class="text-secondary"><i class="fas fa-trash-alt"></i></a>
+                     <input type="hidden" name="id" value="{{ $row->id_row }}" />
                   </div>
                </div>
                <div class="card-body">
+                  
                   {{ $row->description }}
                </div>
             </div>
