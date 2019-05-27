@@ -184,7 +184,8 @@ function editRow(row){
 }
 
 function delRow(row) {
-   var id = $(row).find('input[name=id]').val();
+   var id = $(row).siblings().last().val();
+   console.log(id);
 
    $.ajaxSetup({
          headers: {
