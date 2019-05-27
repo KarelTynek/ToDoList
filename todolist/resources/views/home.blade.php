@@ -5,8 +5,8 @@
         
 <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-4">Fluid jumbotron</h1>
-          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+          <h1 class="display-4">Todolist</h1>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam erat volutpat. Integer pellentesque quam vel velit. Nullam sapien sem, ornare ac, nonummy non, lobortis a enim. Duis bibendum, lectus ut viverra rhoncus, dolor nunc faucibus libero, eget facilisis enim ipsum id lacus.</p>
         </div>
       </div>
 
