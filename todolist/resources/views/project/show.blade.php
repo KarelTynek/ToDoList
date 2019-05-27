@@ -64,7 +64,7 @@
       var parent = $(column).parents('.card').find('.main');
 
       if ($(parent).children(".item").length <= 0) {
-         parent.append(
+         parent.prepend(
          `
          <div class="item">
             <div class="form-group">
