@@ -19,7 +19,7 @@ class RowController extends Controller
             'description' => $request->input('title')
         ]);
 
-        return response()->json("Description changed");
+        return response()->json("Renamed");
     }
 
     public function destroy(Request $request) {

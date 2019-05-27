@@ -60,8 +60,7 @@
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script>
-
-/**
+   /**
  * CRUD ACTIONS
 */
 function addForm(column) {
@@ -180,7 +179,41 @@ function del(column) {
 
 
 function editRow(row){
+   var id = $(row).siblings().last().val();
+   var target = $(row).parents('.card').find('.rowDesc');
+   var description = $(row).parents('.card').find('.rowDesc').html();
 
+   description = description.trim();
+
+   console.log(description);
+
+   if ($(target).find('input').length) return;
+
+   target.html(`<textarea class="form-control" id="${id}" rows="3">${description}</textarea>`);
+
+   $(target).focusout(function() {
+      target.html($(`#${id}`).val());
+
+      $.ajaxSetup({
+         headers: {
+             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+      });
+
+      $.ajax({
+         type: "POST",
+         url: "{{ route('row.edit') }}",
+         data: { 
+            id: id,
+            title: target.html()
+         },success: function(data) {
+            reload()
+         },error: function(request, status, error) {
+            var err = JSON.parse(request.responseText);
+            console.log(err);
+         }
+      });
+   });
 }
 
 function delRow(row) {
