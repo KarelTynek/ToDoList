@@ -59,6 +59,8 @@
 
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+   integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 <script>
    function addForm(column) {
       var parent = $(column).parents('.card').find('.main');
@@ -119,8 +121,6 @@
       var id = $(column).parents('.card').find('input[name=id]').val();
       var target = $(column).parents('.card').find('.cardname');
       var name = $(column).parents('.card').find('.cardname').html();
-
-      if ($(target).find('input').length) return;
 
       target.html(`<input id="${id}" type="text" value="${name}" class="form-control" />`);
 
