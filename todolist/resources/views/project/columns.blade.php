@@ -26,11 +26,10 @@
                   <div class="float-right">
                      <a onclick="editRow(this)" href="#" class="text-secondary"><i class="fas fa-edit mr-1"></i></a>
                      <a onclick="delRow(this)" href="#" class="text-secondary"><i class="fas fa-trash-alt"></i></a>
-                     <input type="hidden" name="id" value="{{ $row->id_row }}" />
+                     <input type="hidden" name="idrow" value="{{ $row->id_row }}" />
                   </div>
                </div>
                <div class="card-body">
-                  
                   {{ $row->description }}
                </div>
             </div>
