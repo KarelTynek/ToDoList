@@ -66,9 +66,9 @@
       if ($(parent).children(".item").length <= 0) {
          parent.prepend(
          `
-         <div class="item">
+         <div class="item border mb-2 p-2">
             <div class="form-group">
-               <textarea name="desc" class="form-control"></textarea>
+               <textarea name="desc" class="form-control" placeholder="Text poznámky"></textarea>
             </div>
             <div class="row">
                <div class="col-md-6 mt-2">
