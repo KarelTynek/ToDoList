@@ -5,15 +5,17 @@
       <div class="card shadow-sm column">
          <div class="card-header">
             <div class="row">
-               <div class="col-9">
-                     <span class="cardname">{{ $item->name }}</span>
+               <div class="col-7">
+                  <span class="cardname">{{ $item->name }}</span>
                </div>
-               
-               <div class="float-right">
-                  <a onclick="addForm(this)" href="#"><i class="fas fa-plus mr-1"></i></a>
-                  <a onclick="edit(this)" href="#"><i class="fas fa-pen mr-1"></i></a>
-                  <i class="fas fa-trash-alt"></i>
+               <div class="col-5">
+                  <div class="float-right">
+                     <a onclick="addForm(this)" href="#"><i class="fas fa-plus mr-1"></i></a>
+                     <a onclick="edit(this)" href="#"><i class="fas fa-pen mr-1"></i></a>
+                     <i class="fas fa-trash-alt"></i>
+                  </div>
                </div>
+
             </div>
 
          </div>
