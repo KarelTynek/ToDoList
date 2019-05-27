@@ -68,23 +68,29 @@
       if ($(parent).children(".item").length <= 0) {
          parent.prepend(
          `
-         <div class="item border mb-2 p-2">
-            <div class="form-group">
-               <textarea name="desc" class="form-control" placeholder="Text poznámky"></textarea>
-            </div>
-            <div class="row">
-               <div class="col-md-6 mt-2">
-                  <button type="button" class="btn btn-secondary w-100">Zrušit</button>
+         <div class="item">
+            <div class="item border rounded shadow-sm mb-2 p-2">
+               <div class="form-group">
+                  <textarea name="desc" class="form-control" placeholder="Text poznámky"></textarea>
                </div>
-               <div class="col-md-6 mt-2">
-                  <button onclick="addRow(this)" type="button" class="btn btn-success w-100">Přidat</button>
-               </div>   
+               <div class="row">
+                  <div class="col-md-6 mt-2">
+                     <button onclick="remRow(this)" type="button" class="btn btn-secondary w-100">Zrušit</button>
+                  </div>
+                  <div class="col-md-6 mt-2">
+                     <button onclick="addRow(this)" type="button" class="btn btn-success w-100">Přidat</button>
+                  </div>   
+               </div>
             </div>
          </div>
          `
       )
       }
 
+   }
+
+   function remRow(column) {
+      $(column).parents(".item").remove();
    }
 
    function addRow(column) {
