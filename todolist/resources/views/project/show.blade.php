@@ -205,8 +205,8 @@ function del(column) {
 
 function editRow(row){
    var id = $(row).siblings().last().val();
-   var target = $(row).parents('.card').find('.rowDesc');
-   var description = $(row).parents('.card').find('.rowDesc').html();
+   var target = $(row).closest('.card').find('.rowDesc');
+   var description = $(row).closest('.card').find('.rowDesc').html();
 
    description = description.trim();
 
