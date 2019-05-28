@@ -19,6 +19,9 @@
             <a href="{{ route('createproject') }}" type="button" class="btn btn-primary">
                 Nový projekt
             </a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+                    Launch demo modal
+            </button>
         </div>
     </div>
     <div class="row">
@@ -96,6 +99,26 @@
     </div>
 </div>
 @endsection
+
+<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="Modal1Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="Modal1Label">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
