@@ -78,12 +78,12 @@ class ProjectController extends Controller
 
         App\user_project::where('fk_project', $request->input('project'))->delete();
         App\Project::where('id_project',  $request->input('project'))->delete();
-        flash('Project byl smazán.');
+        flash('Projekt byl smazán.');
         return redirect()->route('profile');
     }
 
     private function getProjectData($id) {
-        return App\Project::select('title', 'description', 'owner')
+        return App\Project::select('title', 'description', 'owner', 'type')
             ->where('id_project', $id)
             ->first();
     }

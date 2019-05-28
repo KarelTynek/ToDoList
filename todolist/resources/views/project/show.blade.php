@@ -21,9 +21,11 @@
          </button>
          @if ($projectData->owner == Auth::id())
          <span class="float-right">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#share">
-               Sdílet
-            </button>
+            @if ($projectData->type == 0)
+               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#share">
+                  Sdílet
+               </button>        
+            @endif
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
                Smazat
             </button>
@@ -59,7 +61,7 @@
       </div>
    </div>
 </div>
-
+@if ($projectData->type == 0)
 <div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="sharelabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -86,7 +88,7 @@
       </div>
    </div>
 </div>
-
+@endif
 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="deletelabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
          <div class="modal-content">
