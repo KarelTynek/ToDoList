@@ -44,8 +44,32 @@ class ProjectController extends Controller
        ]);
     }
 
+    public function share(Request $request) {
+        $user = App\User::where('email', $request->input('email'))->first();
+        if (!$user) {
+            flash('Uživatel s emailem ' . $request->input('email') . ' nebyl nalezen.')->warning();
+            return back();
+        } else if (Auth::user()->email == $request->input('email')) {
+            flash('Sdílení selhalo. Tento projekt vlastníte.')->warning();
+            return back();
+        }
+
+        if (App\user_project::where('fk_user', $user->id)->where('fk_project', $request->input('project'))->first()) {
+            flash('Tento projekt již je sdílený s uživatelem ' . $user->name . '.')->warning();
+            return back();
+        } else {
+            $userProject = new App\user_project;
+            $userProject->fk_user = $user->id;
+            $userProject->fk_project = $request->input('project');
+            $userProject->save();
+    
+            flash('Projekt sdílen s uživatelem ' . $user->name . '.');
+            return back();
+        }
+    }
+
     private function getProjectData($id) {
-        return App\Project::select('title', 'description')
+        return App\Project::select('title', 'description', 'owner')
             ->where('id_project', $id)
             ->first();
     }

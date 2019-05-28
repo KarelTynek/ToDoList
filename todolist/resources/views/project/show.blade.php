@@ -4,6 +4,7 @@
 <div class="container-fluid mt-3">
    <div class="row">
       <div class="col-md-12">
+         @include('flash::message')
          @if ($errors->any())
          <div class="alert alert-warning">
             @foreach ($errors->all() as $error)
@@ -18,16 +19,13 @@
          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#columnmodal">
             Přidat sloupec
          </button>
-         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
-               Launch demo modal
-       </button>
-
-         <span class="align-middle ml-2 text-muted">
-            {{ $projectData->title }}
-            @if ($projectData->description != null)
-            - {{ str_limit($projectData->description, $limit = 150, $end = '...') }}
-            @endif
+         @if ($projectData->owner == Auth::id())
+         <span class="float-right">
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#share">
+               Sdílet
+            </button>
          </span>
+         @endif
       </div>
    </div>
    <hr />
@@ -59,21 +57,28 @@
    </div>
 </div>
 
-<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="Modal1Label" aria-hidden="true">
+<div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="sharelabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
       <div class="modal-content">
          <div class="modal-header">
-            <h5 class="modal-title" id="Modal1Label">Modal title</h5>
+            <h5 class="modal-title" id="sharelabel">Sdílení</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                <span aria-hidden="true">&times;</span>
             </button>
          </div>
          <div class="modal-body">
-            ...
+            <form method="POST" action="{{ route('project.share') }}">
+               @csrf
+               <div class="form-group">
+                  <label for="email">E-mail</label>
+                  <input name="email" type="email" class="form-control" placeholder="E-mail">
+                  <input name="project" type="hidden" value="{{ $project }}">
+               </div>
          </div>
          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+            <button type="submit" class="btn btn-primary">Sdílet</button>
+            </form>
          </div>
       </div>
    </div>
@@ -85,10 +90,7 @@
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script>
-   /**
- * CRUD ACTIONS
-*/
-function addForm(column) {
+   function addForm(column) {
    var parent = $(column).parents('.card').find('.main');
 
    if ($(parent).children(".item").length <= 0) {
@@ -200,8 +202,6 @@ function del(column) {
          }
       });
 }
-
-
 
 function editRow(row){
    var id = $(row).siblings().last().val();
