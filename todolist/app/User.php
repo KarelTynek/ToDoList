@@ -6,13 +6,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Webpatser\Uuid\Uuid;
-use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 
 class User extends Authenticatable
 {
     use Notifiable;
-    use HasRoleAndPermission;
-
     public $incrementing = false;
 
     /**
