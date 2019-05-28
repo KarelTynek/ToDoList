@@ -45,20 +45,18 @@
                                     @if ($project->type == 1)
                                     <li class="list-group-item">
                                         @if ($project->owner == Auth::id())
-                                        <i class="fas fa-edit"></i>
+                                        <a href="{{ route('editproject', ['id' => $project->id_project]) }}" class="text-dark"><i class="fas fa-edit"></i></a>
                                         @endif
-                                        <div class="row">
-                                            <div class="col-10"><span>
+                                            <span>
                                                     <a class="card-link"
                                                         href="{{ route('showproject', ['id' => $project->id_project]) }}">{{ $project->title }}</a>
                                                     @if ($project->description != null)
                                                     - {{ str_limit($project->description, $limit = 100, $end = '...') }}
                                                     @endif
-                                                </span></div>
-                                            <div class="col-2"> <span
+                                                </span>
+                                            <span
                                                     class="float-right text-muted">{{ date('d.m.Y', strtotime($project->updated_at)) }}</span>
-                                            </div>
-                                        </div>
+                                            
                                     </li>
                                     @endif
                                     @endforeach
