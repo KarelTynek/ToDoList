@@ -42,10 +42,18 @@ class UserController extends Controller
     }
 
     private function getPrivateAmount() {
-        return App\Project::selectRaw('COUNT(type) as count')->where('type', 1)->first();
+        return App\Project::selectRaw('COUNT(type) as count')
+            ->join('user_projects', 'fk_project', '=', 'id_project')
+            ->where('type', 1)
+            ->where('fk_user', Auth::id())
+            ->first();
     }
 
     private function getPublicAmount() {
-        return App\Project::selectRaw('COUNT(type) as count')->where('type', 0)->first();
+        return App\Project::selectRaw('COUNT(type) as count')
+            ->join('user_projects', 'fk_project', '=', 'id_project')
+            ->where('type', 0)
+            ->where('fk_user', Auth::id())
+            ->first();
     }
 }
