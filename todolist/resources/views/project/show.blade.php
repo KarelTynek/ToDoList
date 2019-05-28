@@ -18,6 +18,10 @@
          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#columnmodal">
             Přidat sloupec
          </button>
+         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+               Launch demo modal
+       </button>
+
          <span class="align-middle ml-2 text-muted">
             {{ $projectData->title }}
             @if ($projectData->description != null)
@@ -54,6 +58,27 @@
       </div>
    </div>
 </div>
+
+<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="Modal1Label" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="Modal1Label">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            ...
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+      </div>
+   </div>
+</div>
+
 @endsection
 
 
