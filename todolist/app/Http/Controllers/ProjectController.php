@@ -83,7 +83,7 @@ class ProjectController extends Controller
     }
 
     private function getProjectData($id) {
-        return App\Project::select('title', 'description', 'owner')
+        return App\Project::select('title', 'description', 'owner', 'type')
             ->where('id_project', $id)
             ->first();
     }
