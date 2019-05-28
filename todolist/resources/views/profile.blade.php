@@ -35,8 +35,8 @@
                         </h2>
                     </div>
                     <div id="collapseprivate" class="collapse" aria-labelledby="private" data-parent="#accordion">
-                        <div class="card-body">
-                            <ul class="list-group m-0">
+                        <div class="card-body p-0">
+                            <ul class="list-group m-0 list-group-flush">
                                 @foreach ($projects as $project)
                                 @if ($project->type == 1)
                                 <li class="list-group-item">
@@ -66,7 +66,8 @@
                         </h2>
                     </div>
                     <div id="collapsepublic" class="collapse" aria-labelledby="public" data-parent="#accordion">
-                        <div class="card-body">
+                        <div class="card-body p-0">
+                                <ul class="list-group m-0 list-group-flush">
                             @foreach ($projects as $project)
                             @if ($project->type == 0)
                             <li class="list-group-item">
@@ -82,6 +83,7 @@
                             </li>
                             @endif
                             @endforeach
+                                </ul>
                         </div>
                     </div>
                 </div>
