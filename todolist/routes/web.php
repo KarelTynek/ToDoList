@@ -26,6 +26,11 @@ Route::group(['middleware' => 'auth'], function () {
             'uses' => 'ProjectController@store',
         ]);
 
+        Route::post('share', [
+            'as' => 'project.share',
+            'uses' => 'ProjectController@share'
+        ]);
+
     });
 
     Route::prefix('column')->group(function () {
