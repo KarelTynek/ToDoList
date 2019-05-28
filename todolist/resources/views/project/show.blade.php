@@ -187,7 +187,7 @@ function editRow(row){
 
    console.log(description);
 
-   if ($(target).find('input').length) return;
+   if ($(target).find('textarea').length) return;
 
    target.html(`<textarea class="form-control" id="${id}" rows="3">${description}</textarea>`);
 
