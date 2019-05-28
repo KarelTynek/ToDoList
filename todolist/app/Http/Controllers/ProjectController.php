@@ -68,6 +68,20 @@ class ProjectController extends Controller
         }
     }
 
+    public function destroy(Request $request) {
+        $columns = App\Column::select('id_column')->where('fk_project', $request->input('project'))->get();
+
+        foreach($columns as $item) {
+            App\Row::where('fk_column', $item->id_column)->delete();
+            App\Column::where('id_column', $item->id_column)->delete();
+        }
+
+        App\user_project::where('fk_project', $request->input('project'))->delete();
+        App\Project::where('id_project',  $request->input('project'))->delete();
+        flash('Project byl smazán.');
+        return redirect()->route('profile');
+    }
+
     private function getProjectData($id) {
         return App\Project::select('title', 'description', 'owner')
             ->where('id_project', $id)

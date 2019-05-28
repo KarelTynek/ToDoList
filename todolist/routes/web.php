@@ -31,6 +31,11 @@ Route::group(['middleware' => 'auth'], function () {
             'uses' => 'ProjectController@share'
         ]);
 
+        Route::delete('delete', [
+            'as' => 'project.delete',
+            'uses' => 'ProjectController@destroy'
+        ]);
+
     });
 
     Route::prefix('column')->group(function () {
