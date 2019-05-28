@@ -19,7 +19,6 @@
             <a href="{{ route('createproject') }}" type="button" class="btn btn-primary">
                 Nový projekt
             </a>
-
         </div>
     </div>
     <div class="row">
@@ -27,8 +26,6 @@
             @if(count($projects) > 0)
             <div class="accordion" id="accordion">
                 <div class="card border-0">
-
-
                     <div class="card">
                         <div class="card-header" id="private">
                             <h2 class="mb-0">
@@ -47,6 +44,9 @@
                                     @foreach ($projects as $project)
                                     @if ($project->type == 1)
                                     <li class="list-group-item">
+                                        @if ($project->owner == Auth::id())
+                                        <i class="fas fa-edit"></i>
+                                        @endif
                                         <div class="row">
                                             <div class="col-10"><span>
                                                     <a class="card-link"
@@ -59,8 +59,6 @@
                                                     class="float-right text-muted">{{ date('d.m.Y', strtotime($project->updated_at)) }}</span>
                                             </div>
                                         </div>
-
-
                                     </li>
                                     @endif
                                     @endforeach
@@ -84,6 +82,9 @@
                                     @foreach ($projects as $project)
                                     @if ($project->type == 0)
                                     <li class="list-group-item">
+                                        @if ($project->owner == Auth::id())
+                                        <i class="fas fa-edit"></i>
+                                        @endif
                                         <span>
                                             <a
                                                 href="{{ route('showproject', ['id' => $project->id_project]) }}">{{ $project->title }}</a>

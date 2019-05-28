@@ -22,7 +22,7 @@ class UserController extends Controller
     }
 
     private function getUserProjects($request) {
-        $query = App\Project::select('title','updated_at', 'id_project', 'description', 'type')
+        $query = App\Project::select('title','updated_at', 'id_project', 'description', 'type', 'owner')
             ->join('user_projects', 'fk_project', '=', 'id_project')
             ->where('fk_user', Auth::id());
 
