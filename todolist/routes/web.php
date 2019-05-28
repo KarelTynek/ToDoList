@@ -20,6 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('project')->group(function () {
         Route::get('create', 'ProjectController@create')->name('createproject');
         Route::get('show/{id}', 'ProjectController@show')->name('showproject');
+        Route::get('edit/{id}', 'ProjectController@editIndex')->name('editproject');
 
         Route::post('store', [
             'as' => 'project.store',
@@ -34,6 +35,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('delete', [
             'as' => 'project.delete',
             'uses' => 'ProjectController@destroy'
+        ]);
+
+        Route::post('edit', [
+            'as' => 'project.edit',
+            'uses' => 'ProjectController@edit'
         ]);
 
     });

@@ -68,6 +68,34 @@ class ProjectController extends Controller
         }
     }
 
+    public function editIndex($id) {
+        $project = App\Project::find($id);
+
+        if (!$project) {
+            flash('Projekt nenalezen.')->warning();
+            return redirect()->route('profile');
+        } else if ($project->owner != Auth::id()) {
+            flash('Nejste vlastníkem požadovaného projektu.')->warning();
+            return redirect()->route('profile');
+        }
+
+        return view('project.edit', ['project' => Self::getProjectData($id),]);
+    }
+
+    public function edit(FormRequest\CreateProject $request) {
+        $request->validated();
+
+        App\Project::where('id_project', $request->input('project'))->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('desc'),
+            'type' => $request->input('type')
+        ]);
+
+        
+       flash('Projekt ' . $request->input('title') . ' byl upraven.');
+       return redirect()->route('profile');
+    }
+
     public function destroy(Request $request) {
         $columns = App\Column::select('id_column')->where('fk_project', $request->input('project'))->get();
 
@@ -83,7 +111,7 @@ class ProjectController extends Controller
     }
 
     private function getProjectData($id) {
-        return App\Project::select('title', 'description', 'owner', 'type')
+        return App\Project::select('title', 'description', 'owner', 'type', 'id_project')
             ->where('id_project', $id)
             ->first();
     }

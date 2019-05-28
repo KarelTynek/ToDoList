@@ -83,7 +83,7 @@
                                     @if ($project->type == 0)
                                     <li class="list-group-item">
                                         @if ($project->owner == Auth::id())
-                                        <i class="fas fa-edit"></i>
+                                        <a href="{{ route('editproject', ['id' => $project->id_project]) }}" class="text-dark"><i class="fas fa-edit"></i></a>
                                         @endif
                                         <span>
                                             <a
