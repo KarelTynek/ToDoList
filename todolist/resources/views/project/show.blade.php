@@ -21,16 +21,17 @@
          </button>
          @if ($projectData->owner == Auth::id())
          <span class="float-right d-flex">
-            @if ($projectData->type == 0)  
-               <div class="dropdown mr-2">
-                  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     Sdílení
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#share">Sdílet</a>
-                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#sharelist">Seznam</a>
-                  </div>
-               </div>  
+            @if ($projectData->type == 0)
+            <div class="dropdown mr-2">
+               <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Sdílení
+               </button>
+               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#share">Sdílet</a>
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#sharelist">Seznam</a>
+               </div>
+            </div>
             @endif
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
                Smazat
@@ -113,6 +114,15 @@
                         <th scope="col">Akce</th>
                      </tr>
                   </thead>
+                  <tbody>
+                     @foreach ($shared as $item)
+                     <tr>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->email }}</td>
+                        <td><a href="{{ route('sharedelete', ['email' => $item->email ]) }}">Odebrat</a></td>
+                     </tr>
+                     @endforeach
+                  </tbody>
                </table>
             </div>
          </div>
@@ -124,29 +134,29 @@
 </div>
 @endif
 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="deletelabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-         <div class="modal-content">
-            <div class="modal-header">
-               <h5 class="modal-title" id="deletelabel">Smazat</h5>
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-               </button>
-            </div>
-            <div class="modal-body">
-               Opravdu chcete tento projekt smazat?
-               <form method="POST" action="{{ route('project.delete') }}">
-                  @method('DELETE')
-                  @csrf
-                  <input name="project" type="hidden" value="{{ $project }}">
-            </div>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Ne</button>
-               <button type="submit" class="btn btn-primary">Ano</button>
-               </form>
-            </div>
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="deletelabel">Smazat</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            Opravdu chcete tento projekt smazat?
+            <form method="POST" action="{{ route('project.delete') }}">
+               @method('DELETE')
+               @csrf
+               <input name="project" type="hidden" value="{{ $project }}">
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Ne</button>
+            <button type="submit" class="btn btn-primary">Ano</button>
+            </form>
          </div>
       </div>
    </div>
+</div>
 
 @endsection
 
@@ -154,7 +164,8 @@
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script>
-   function addForm(column) {
+
+function addForm(column) {
    var parent = $(column).parents('.card').find('.main');
 
    if ($(parent).children(".item").length <= 0) {
@@ -379,8 +390,5 @@ $('#addcolumn').click(function() {
          $('#err').append(err);
       });
    }
-
-   
-
 </script>
 @endpush

@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('create', 'ProjectController@create')->name('createproject');
         Route::get('show/{id}', 'ProjectController@show')->name('showproject');
         Route::get('edit/{id}', 'ProjectController@editIndex')->name('editproject');
+        Route::get('share/delete/{email}', 'ProjectController@shareDelete')->name('sharedelete');
 
         Route::post('store', [
             'as' => 'project.store',
