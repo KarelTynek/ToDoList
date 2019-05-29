@@ -4,6 +4,7 @@
 <div class="container-fluid mt-3">
    <div class="row">
       <div class="col-md-12">
+         <div id="err"></div>
          @include('flash::message')
          @if ($errors->any())
          <div class="alert alert-warning">
@@ -16,16 +17,19 @@
    </div>
    <div class="row">
       <div class="col-md-12">
-         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#columnmodal">
+         <button type="button" class="btn btn-primary float-left" data-toggle="modal" data-target="#columnmodal">
             Přidat sloupec
          </button>
+      <span class="ml-2 d-flex p-1 float-left lead text-dark"></span>
+         <span class="ml-1 d-flex p-2 float-left text-muted"></span>
+
          @if ($projectData->owner == Auth::id())
          <span class="float-right d-flex">
             @if ($projectData->type == 0)
             <div class="dropdown mr-2">
                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  Sdílení
+                  <i class="fas fa-share-alt"></i>
                </button>
                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item" href="#" data-toggle="modal" data-target="#share">Sdílet</a>
@@ -34,7 +38,7 @@
             </div>
             @endif
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
-               Smazat
+               <i class="fas fa-trash"></i>
             </button>
          </span>
          @endif
@@ -164,8 +168,7 @@
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script>
-
-function addForm(column) {
+   function addForm(column) {
    var parent = $(column).parents('.card').find('.main');
 
    if ($(parent).children(".item").length <= 0) {
@@ -215,7 +218,12 @@ function addRow(column) {
       },success: function(data) {
          reload()
       },error: function(request, status, error) {
+         var err = JSON.parse(request.responseText);
          console.log(request.responseText);
+         $("#err").html("");
+         $("#err").append(`<div class="alert alert-danger alert-dismissible fade show">Vyplňtě poznámky
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button></div>`);
       }
    });  
 }
@@ -249,6 +257,7 @@ function edit(column) {
          },error: function(request, status, error) {
             var err = JSON.parse(request.responseText);
             console.log(err);
+            $('#err').append(err);
          }
       });
    });
@@ -274,6 +283,7 @@ function del(column) {
          },error: function(request, status, error) {
             var err = JSON.parse(request.responseText);
             console.log(err);
+            $('#err').append(err);
          }
       });
 }
@@ -307,12 +317,10 @@ function editRow(row){
             id: id,
             title: target.html()
          },success: function(data) {
-            $('#err').append(data);
             reload()
          },error: function(request, status, error) {
             var err = JSON.parse(request.responseText);
             console.log(err);
-            $('#err').append(err);
          }
       });
    });
