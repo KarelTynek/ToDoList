@@ -40,7 +40,8 @@ class ProjectController extends Controller
            'project' => $id, 
            'columns' => App\Column::getColumns($id),
            'projectData' => Self::getProjectData($id),
-           'rows' => App\Row::getRows($id)
+           'rows' => App\Row::getRows($id),
+           'shared' => Self::getSharedUsers($id)
        ]);
     }
 
@@ -121,5 +122,13 @@ class ProjectController extends Controller
             ->where('owner', Auth::id())
             ->orderBy('created_at', 'desc')
             ->first();
+    }
+
+    private function getSharedUsers($id) {
+        return App\user_project::select('name', 'email')
+            ->join('users', 'id', '=', 'fk_user')
+            ->where('fk_project', $id)
+            ->where('fk_user', '!=', Auth::id())
+            ->get();
     }
 }

@@ -20,11 +20,17 @@
             Přidat sloupec
          </button>
          @if ($projectData->owner == Auth::id())
-         <span class="float-right">
-            @if ($projectData->type == 0)
-               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#share">
-                  Sdílet
-               </button>        
+         <span class="float-right d-flex">
+            @if ($projectData->type == 0)  
+               <div class="dropdown mr-2">
+                  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Sdílení
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#share">Sdílet</a>
+                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#sharelist">Seznam</a>
+                  </div>
+               </div>  
             @endif
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
                Smazat
@@ -61,7 +67,7 @@
       </div>
    </div>
 </div>
-@if ($projectData->type == 0)
+@if ($projectData->type == 0 && $projectData->owner == Auth::id())
 <div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="sharelabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -84,6 +90,34 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
             <button type="submit" class="btn btn-primary">Sdílet</button>
             </form>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" id="sharelist" tabindex="-1" role="dialog" aria-labelledby="sharelistlabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="sharelistlabel">Seznam sdílení</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <div class="table-responsive">
+               <table class="table">
+                  <thead>
+                     <tr>
+                        <th scope="col">Jméno</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Akce</th>
+                     </tr>
+                  </thead>
+               </table>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
          </div>
       </div>
    </div>
