@@ -69,6 +69,19 @@ class ProjectController extends Controller
         }
     }
 
+    public function shareDelete($email) {
+        $user = App\User::select('id')->where('email', $email)->first();
+
+        if (!$user) {
+            flash('Uživatel s emailem ' . $email . ' nebyl nalezen.');
+            return back();
+        }
+        
+        App\user_project::where('fk_user', $user->id)->delete();
+        flash('Uživatel s emailem ' . $email . ' byl odebrán.');
+        return back();
+    }
+
     public function editIndex($id) {
         $project = App\Project::find($id);
 
