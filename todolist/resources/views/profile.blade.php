@@ -16,7 +16,7 @@
             </form>
         </div>
         <div class="col">
-            <a href="{{ route('createproject') }}" type="button" class="btn btn-primary">
+            <a href="{{ route('createproject') }}" class="btn btn-primary">
                 Nový projekt
             </a>
         </div>
@@ -29,13 +29,13 @@
                     <div class="card">
                         <div class="card-header" id="private">
                             <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                <a class="btn text-primary collapsed" data-toggle="collapse"
                                     data-target="#collapseprivate" aria-expanded="false"
                                     aria-controls="collapseprivate">
                                     <span
                                         class="badge badge-pill badge-secondary pl-2 pr-2">{{ $private->count }}</span>
                                     Soukromé projekty
-                                </button>
+                                </a>
                             </h2>
                         </div>
                         <div id="collapseprivate" class="collapse" aria-labelledby="private" data-parent="#accordion">
@@ -45,18 +45,19 @@
                                     @if ($project->type == 1)
                                     <li class="list-group-item">
                                         @if ($project->owner == Auth::id())
-                                        <a href="{{ route('editproject', ['id' => $project->id_project]) }}" class="text-dark"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('editproject', ['id' => $project->id_project]) }}"
+                                            class="text-dark"><i class="fas fa-edit"></i></a>
                                         @endif
-                                            <span>
-                                                    <a class="card-link"
-                                                        href="{{ route('showproject', ['id' => $project->id_project]) }}">{{ $project->title }}</a>
-                                                    @if ($project->description != null)
-                                                    - {{ str_limit($project->description, $limit = 100, $end = '...') }}
-                                                    @endif
-                                                </span>
-                                            <span
-                                                    class="float-right text-muted">{{ date('d.m.Y', strtotime($project->updated_at)) }}</span>
-                                            
+                                        <span>
+                                            <a class="card-link"
+                                                href="{{ route('showproject', ['id' => $project->id_project]) }}">{{ $project->title }}</a>
+                                            @if ($project->description != null)
+                                            - {{ str_limit($project->description, $limit = 100, $end = '...') }}
+                                            @endif
+                                        </span>
+                                        <span
+                                            class="float-right text-muted">{{ date('d.m.Y', strtotime($project->updated_at)) }}</span>
+
                                     </li>
                                     @endif
                                     @endforeach
@@ -67,11 +68,11 @@
                     <div class="card">
                         <div class="card-header" id="public">
                             <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                <a class="btn text-primary collapsed" data-toggle="collapse"
                                     data-target="#collapsepublic" aria-expanded="false" aria-controls="collapsepublic">
                                     <span class="badge badge-pill badge-secondary pl-2 pr-2">{{ $public->count }}</span>
                                     Veřejné projekty
-                                </button>
+                                </a>
                             </h2>
                         </div>
                         <div id="collapsepublic" class="collapse" aria-labelledby="public" data-parent="#accordion">
@@ -81,7 +82,8 @@
                                     @if ($project->type == 0)
                                     <li class="list-group-item">
                                         @if ($project->owner == Auth::id())
-                                        <a href="{{ route('editproject', ['id' => $project->id_project]) }}" class="text-dark"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('editproject', ['id' => $project->id_project]) }}"
+                                            class="text-dark"><i class="fas fa-edit"></i></a>
                                         @endif
                                         <span>
                                             <a
