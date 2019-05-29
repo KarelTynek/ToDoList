@@ -44,20 +44,24 @@
                                     @foreach ($projects as $project)
                                     @if ($project->type == 1)
                                     <li class="list-group-item">
-                                        @if ($project->owner == Auth::id())
-                                        <a href="{{ route('editproject', ['id' => $project->id_project]) }}"
-                                            class="text-dark"><i class="fas fa-edit"></i></a>
-                                        @endif
                                         <span>
-                                            <a class="card-link"
+                                            <a
                                                 href="{{ route('showproject', ['id' => $project->id_project]) }}">{{ $project->title }}</a>
                                             @if ($project->description != null)
                                             - {{ str_limit($project->description, $limit = 100, $end = '...') }}
                                             @endif
                                         </span>
-                                        <span
-                                            class="float-right text-muted">{{ date('d.m.Y', strtotime($project->updated_at)) }}</span>
+                                        <div class="col-2 float-right">
+                                            <span
+                                                class="text-muted float-right">{{ date('d.m.Y', strtotime($project->updated_at)) }}</span>
+                                        </div>
 
+                                        <div class="col-1 float-right">
+                                            @if ($project->owner == Auth::id())
+                                            <a href="{{ route('editproject', ['id' => $project->id_project]) }}"
+                                                class="text-dark float-right mr-2"><i class="fas fa-edit text-info"></i></a>
+                                            @endif
+                                        </div>
                                     </li>
                                     @endif
                                     @endforeach
@@ -81,10 +85,8 @@
                                     @foreach ($projects as $project)
                                     @if ($project->type == 0)
                                     <li class="list-group-item">
-                                        @if ($project->owner == Auth::id())
-                                        <a href="{{ route('editproject', ['id' => $project->id_project]) }}"
-                                            class="text-dark"><i class="fas fa-edit"></i></a>
-                                        @endif
+
+
                                         <span>
                                             <a
                                                 href="{{ route('showproject', ['id' => $project->id_project]) }}">{{ $project->title }}</a>
@@ -92,8 +94,19 @@
                                             - {{ str_limit($project->description, $limit = 100, $end = '...') }}
                                             @endif
                                         </span>
-                                        <span
-                                            class="float-right text-muted">{{ date('d.m.Y', strtotime($project->updated_at)) }}</span>
+
+                                        <div class="col-2 float-right">
+                                            <span
+                                                class="text-muted float-right">{{ date('d.m.Y', strtotime($project->updated_at)) }}</span>
+                                        </div>
+
+                                        <div class="col-1 float-right">
+                                            @if ($project->owner == Auth::id())
+                                            <a href="{{ route('editproject', ['id' => $project->id_project]) }}"
+                                                class="text-dark float-right mr-2"><i class="fas fa-edit"></i></a>
+                                            @endif
+                                        </div>
+
                                     </li>
                                     @endif
                                     @endforeach
