@@ -296,10 +296,12 @@ function editRow(row){
             id: id,
             title: target.html()
          },success: function(data) {
+            $('#err').append(data);
             reload()
          },error: function(request, status, error) {
             var err = JSON.parse(request.responseText);
             console.log(err);
+            $('#err').append(err);
          }
       });
    });
@@ -326,6 +328,7 @@ function delRow(row) {
          },error: function(request, status, error) {
             var err = JSON.parse(request.responseText);
             console.log(err);
+            $('#err').append(err);
          }
       });
 }
@@ -371,7 +374,9 @@ $('#addcolumn').click(function() {
       }).done(function(data) {
          $('#columnscontainer').html(data.view);
       }).fail(function(request, status, error) {
+         var err = JSON.parse(request.responseText);
          console.log(request.responseText);
+         $('#err').append(err);
       });
    }
 
