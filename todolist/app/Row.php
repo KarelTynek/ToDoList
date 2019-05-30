@@ -9,7 +9,7 @@ class Row extends Model
     protected $primaryKey = 'id_row';
 
     protected $fillable = [
-        'description',
+        'description', 'priority',
     ];
 
     protected $hidden = [

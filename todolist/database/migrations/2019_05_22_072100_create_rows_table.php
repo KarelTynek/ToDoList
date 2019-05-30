@@ -17,7 +17,7 @@ class CreateRowsTable extends Migration
             $table->increments('id_row');
             $table->text('description');
             $table->integer('fk_column')->unsigned()->index();
-            $table->smallInteger('priority');
+            $table->smallInteger('priority')->default(2);
             $table->timestamps();
         });
 

@@ -9,7 +9,7 @@ use App;
 class ColumnController extends Controller
 {
     public function destroy(Request $request) {
-        $column = App\Column::find($request->input('id'));
+        $column = App\Column::find($request->input('data.id'));
         
         if ($column) {
             App\Row::where('fk_column', $column->id_column)->delete();
@@ -19,12 +19,10 @@ class ColumnController extends Controller
         return back();
     }
 
-    public function add(FormRequest\NewColumn $request) {
-        $request->validated();
-
+    public function add(Request $request) {
         $column = new App\Column;
-        $column->name = $request->input('name');
-        $column->fk_project = $request->input('project');
+        $column->name = $request->input('data.name');
+        $column->fk_project = $request->input('data.project');
         $column->save();
     }
 
@@ -38,11 +36,9 @@ class ColumnController extends Controller
     }
 
     public function rename(Request $request) {
-        App\Column::where('id_column', $request->input('id'))->update([
-            'name' => $request->input('title')
+        App\Column::where('id_column', $request->input('data.id'))->update([
+            'name' => $request->input('data.name')
         ]);
-
-        return response()->json("Renamed");
     }
 
 }

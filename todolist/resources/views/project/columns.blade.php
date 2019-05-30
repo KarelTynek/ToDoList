@@ -11,8 +11,8 @@
                <div class="col-5">
                   <div class="float-right">
                      <a onclick="addForm(this)" href="#"><i class="fas fa-plus mr-1"></i></a>
-                     <a onclick="edit(this)" href="#"><i class="fas fa-pen mr-1"></i></a>
-                     <a onclick="del(this)" href="#"><i class="fas fa-trash-alt"></i></a>
+                     <a onclick="editColumn(this)" href="#"><i class="fas fa-pen mr-1"></i></a>
+                     <a onclick="delColumn(this)" href="#"><i class="fas fa-trash-alt"></i></a>
                   </div>
                </div>
             </div>
@@ -30,7 +30,7 @@
                   </div>
                </div>
                <div class="card-body">
-                  <span class="rowDesc">
+                  <span class="rowdesc">
                      {{ $row->description }}
                   </span>          
                </div>

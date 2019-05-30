@@ -9,22 +9,21 @@ class RowController extends Controller
 {
     public function add(Request $request) {
         $row = new App\Row;
-        $row->description = $request->input('desc');
-        $row->fk_column = $request->input('id');
-        $row->priority = $request->input('priority');
+        $row->description = $request->input('data.desc');
+        $row->fk_column = $request->input('data.id');
+        $row->priority = $request->input('data.priority');
         $row->save();
     }
 
     public function edit(Request $request) {
-        App\Row::where('id_row', $request->input('id'))->update([
-            'description' => $request->input('title')
+        App\Row::where('id_row', $request->input('data.id'))->update([
+            'description' => $request->input('data.desc'),
+            'priority' => $request->input('data.priority')
         ]);
-
-        return response()->json("Renamed");
     }
 
     public function destroy(Request $request) {
-        $row = App\Row::find($request->input('id'));
+        $row = App\Row::find($request->input('data.id'));
         
         if ($row) {
             App\Row::where('id_row', $row->id_row)->delete();
