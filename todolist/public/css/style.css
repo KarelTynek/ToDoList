@@ -15,3 +15,15 @@ textarea {resize: none;}
     scrollbar-color: #f0f0f0 #FFF;
     scrollbar-width: thin;
     }
+
+[data-priority="1"] .card-header {
+    background-color: #dc3545 !important;
+}
+
+[data-priority="2"] .card-header {
+    background-color: #ffc107 !important;
+}
+
+[data-priority="3"] .card-header {
+    background-color: #28a745 !important;
+}

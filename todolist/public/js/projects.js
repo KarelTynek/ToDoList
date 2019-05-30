@@ -4,7 +4,6 @@ function addForm(column) {
    if ($(parent).children(".item").length <= 0) {
       parent.prepend(
          `
-      <div class="item">
          <div class="item border rounded shadow-sm mb-2 p-2">
             <div class="form-group">
                <textarea name="desc" class="form-control" placeholder="Text poznámky"></textarea>
@@ -17,8 +16,17 @@ function addForm(column) {
                   <button onclick="addRow(this)" type="button" class="btn btn-success w-100">Přidat</button>
                </div>   
             </div>
+            <div class="row">
+               <div class="col-md-12 mt-2">
+                  <select name="priority" class="custom-select custom-select-sm">
+                        <option selected disabled>Priorita</option>
+                        <option value="1">Nejvyšší</option>
+                        <option value="2">Střední</option>
+                        <option value="3">Nejmenší</option>
+                  </select>
+               </div>
+            </div>
          </div>
-      </div>
       `
       )
    }
@@ -44,7 +52,8 @@ function addRow(column) {
       url: "http://localhost:8000/row/add",
       data: {
          desc: text,
-         id: id
+         id: id,
+         priority: $(column).parents('.card-body').find('select[name=priority]').val()
       }, success: function (data) {
          reload()
       }, error: function (request, status, error) {
@@ -203,14 +212,14 @@ $('#addcolumn').click(function () {
          var err = JSON.parse(request.responseText);
          console.log(err);
 
-         /*if (err.errors.name != 'undefined') {
+         if (err.errors.name != 'undefined') {
             $('#errors').html('');
             $('#errors').append(err.errors.name);
          }
 
          if (err.errors.project != 'undefined')
             $('#errors').append(err.errors.project);
-         */
+         
       }
    });
 });
@@ -225,7 +234,6 @@ function reload() {
       $('#columnscontainer').html(data.view);
    }).fail(function (request, status, error) {
       var err = JSON.parse(request.responseText);
-      console.log(request.responseText);
       $('#err').append(err);
    });
 }

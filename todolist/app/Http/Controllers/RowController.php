@@ -11,6 +11,7 @@ class RowController extends Controller
         $row = new App\Row;
         $row->description = $request->input('desc');
         $row->fk_column = $request->input('id');
+        $row->priority = $request->input('priority');
         $row->save();
     }
 
