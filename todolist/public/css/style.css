@@ -1,0 +1,29 @@
+textarea {resize: none;}
+.column {height: 500px;}
+.column-text {overflow-y: auto;}
+
+.scrollbar-card::-webkit-scrollbar {
+    width: 4px;
+    background-color: #FFF; }
+    
+.scrollbar-card::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f0; }
+
+.scrollbar-card {
+    scrollbar-color: #f0f0f0 #FFF;
+    scrollbar-width: thin;
+    }
+
+[data-priority="1"] .card-header {
+    background-color: #dc3545 !important;
+}
+
+[data-priority="2"] .card-header {
+    background-color: #ffc107 !important;
+}
+
+[data-priority="3"] .card-header {
+    background-color: #28a745 !important;
+}

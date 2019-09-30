@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Webpatser\Uuid\Uuid;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +38,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function boot() {
+        parent::boot();
+
+        self::creating(function($model){
+            $model->id = self::generateUuid();
+        });
+    }
+
+    public static function generateUuid() {
+        return Uuid::generate();
+    }
 }
